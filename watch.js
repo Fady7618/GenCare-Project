@@ -1,18 +1,9 @@
 const { exec } = require('child_process');
-const chokidar = require('chokidar');
+const nodemon = require('nodemon');
 
-// Watch the whole project, ignore unnecessary folders
-chokidar.watch('.', {
-  ignored: ['node_modules', '.git', 'public/img', '*.log'],
-  persistent: true,
-  ignoreInitial: true
-}).on('all', (event, path) => {
-  console.log(`[${event}] ${path}`);
-  exec('auto-push.bat', (err, stdout, stderr) => {
-    if (err) {
-      console.error('Auto-push failed:', stderr);
-    } else {
-      console.log('Auto-push completed.');
-    }
-  });
+nodemon({
+  watch: ['**/*'],
+  ignore: ['node_modules', 'public/img'],
+  ext: 'js,html,css,json',
+  exec: '.\\auto-push.bat' // Use 'exec' to run the batch file
 });
