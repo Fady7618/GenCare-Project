@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/animate.min.css">
     <link rel="stylesheet" href="/css/home.css">
+    
+    
 </head>
 <body>
     <div class="container-lg">
@@ -27,23 +29,29 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item mx-1 text-center">
-                    <a class="nav-link active" onclick="handleClick(this)" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" onclick="handleClick(this)" aria-current="page" href="#" data-i18n="nav.home">Home</a>
                   </li>
                   <li class="nav-item mx-1 text-center">
-                    <a class="nav-link" onclick="handleClick(this)" href="#pregnancy-weeks">Pregnancy Weeks</a>
+                    <a class="nav-link" onclick="handleClick(this)" href="#pregnancy-weeks" data-i18n="nav.pregnancyWeeks">Pregnancy Weeks</a>
                   </li>
                   <li class="nav-item mx-1 text-center">
-                    <a class="nav-link" onclick="handleClick(this)" href="#baby-names">Baby Names</a>
+                    <a class="nav-link" onclick="handleClick(this)" href="#baby-names" data-i18n="nav.babyNames">Baby Names</a>
                   </li>
                   <li class="nav-item mx-1 text-center">
-                    <a class="nav-link" onclick="handleClick(this)" href="#aiModel">AI test</a>
+                    <a class="nav-link" onclick="handleClick(this)" href="#aiModel" data-i18n="nav.aiTest">AI test</a>
                   </li>
                   <button class="btn mb-2 mb-lg-0">
-                    <a href="/login" class="text-decoration-none text-dark">log in</a>
+                    <a href="/login" class="text-decoration-none text-dark" data-i18n="nav.login">log in</a>
                   </button>
                   <a href="/profile" class="btn mx-lg-2 d-flex align-items-center justify-content-center profile-btn align-self-center">
                     <i class="fa-solid fa-user"></i>
                   </a>
+                  <li class="nav-item mx-1 text-center d-flex align-items-center">
+                    <select id="languageSelect" class="form-select form-select-sm ms-2" style="width:auto; min-width:90px;">
+                      <option value="en">EN</option>
+                      <option value="ar">عربي</option>
+                    </select>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -63,9 +71,9 @@
                           </div>
                           <div class="col-md-8 d-flex align-items-center">
                             <div class="card-body text-center">
-                              <h1 class="card-title opacity-0">What does your <br> baby look like now</h1>
+                              <h1 class="card-title opacity-0" data-i18n="slider.slide1.title"></h1>
                               <button class="btn px-3">
-                                <a href="#pregnancy-weeks" class="text-decoration-none text-dark">show my baby</a>
+                                <a href="#pregnancy-weeks" class="text-decoration-none text-dark" data-i18n="slider.slide1.button">show my baby</a>
                               </button>
                             </div>
                           </div>
@@ -81,8 +89,8 @@
                           </div>
                           <div class="col-md-8 d-flex align-items-center">
                             <div class="card-body text-center">
-                              <h1 class="card-title opacity-0">want baby names?<br>check our name list</h1>
-                              <button class="btn px-3"><a class="text-decoration-none text-dark" href="#baby-names">baby names</a></button>
+                              <h1 class="card-title opacity-0" data-i18n="slider.slide2.title">want baby names?<br>check our name list</h1>
+                              <button class="btn px-3"><a class="text-decoration-none text-dark" href="#baby-names" data-i18n="slider.slide2.button">baby names</a></button>
                             </div>
                           </div>
                         </div>
@@ -97,8 +105,8 @@
                           </div>
                           <div class="col-md-8 d-flex align-items-center">
                             <div class="card-body text-center">
-                              <h1 class="card-title opacity-0">check possibilities of <br>fetal disease</h1>
-                              <button class="btn px-3"><a href="#aiModel" class="text-decoration-none text-dark">AI test</a></button>
+                              <h1 class="card-title opacity-0" data-i18n="slider.slide3.title">check possibilities of <br>fetal disease</h1>
+                              <button class="btn px-3"><a href="#aiModel" class="text-decoration-none text-dark" data-i18n="slider.slide3.button">AI test</a></button>
                             </div>
                           </div>
                         </div>
@@ -122,7 +130,7 @@
     </div>
     
     <div class="container-fluid my-4" id="pregnancy-weeks">
-      <h2 class="text-center mb-4 animate__animated animate__fadeInLeft">pregnancy week by week</h2>
+      <h2 class="text-center mb-4 animate__animated animate__fadeInLeft" data-i18n="pregnancyWeeks.title"></h2>
 
       <swiper-container class="mySwiper"  slides-per-view="6"
         space-between="20" free-mode="true">
@@ -132,7 +140,12 @@
               <div class="row h-100 g-0">
                 <div class="col-12 col-lg-7">
                   <div class="card-body text-center text-lg-start">
-                    <a href="/week/<%= i %>"><span><%= i %></span><br>weeks<br>pregnant</a>
+                    <a href="/week/<%= i %>">
+                      <span><%= i %></span>
+                      <br>
+                      <p data-i18n="pregnancyWeeks.weeks" class="m-0"></p>
+                      <p data-i18n="pregnancyWeeks.pregnant" class="m-0"></p>
+                    </a>
                   </div>
                 </div>
                 <div class="col-12 col-lg-5 d-flex justify-content-center align-items-center ">
@@ -197,7 +210,7 @@
           <div class="blop-3 blp position-absolute"></div>
         
         <div class="container g-0 position-realtive">
-          <h2 class="text-center  mb-3  opacity-0">baby names <br>a-z</h2>
+          <h2 class="text-center  mb-3  opacity-0" data-i18n="babyNames.title"></h2>
 
           <div class="container g-0 stations-container d-flex flex-column  position-relative ">
             <div class="station station1 position-relative d-inline-flex">
@@ -238,13 +251,13 @@
 
           </div>
         </div>
-        <button class="btn seemoreBtn position-absolute mb-3 px-4 py-2 start-50 bottom-0 translate-middle-x" ><a href="/baby-names" class="text-decoration-none text-white">see more</a></button>
+        <button class="btn seemoreBtn position-absolute mb-3 px-4 py-2 start-50 bottom-0 translate-middle-x" ><a href="/baby-names" class="text-decoration-none text-white" data-i18n="babyNames.seeMore">see more</a></button>
       </div>
     </div>
     
     <div class="conatiner-fluid d-flex flex-column position-relative overflow-hidden" id="aiModel">
       <div class="row g-0 ">
-        <h2 class="text-center  opacity-0">fetal's brain disease test</h2>
+        <h2 class="text-center  opacity-0" data-i18n="aiModel.title">fetal's brain disease test</h2>
       </div>
       <div class="row g-0">
         <div class="col-12 col-md-8 d-flex flex-md-column">
@@ -255,7 +268,7 @@
               </div>
               <div class="col-md-8 d-flex align-items-center">
                 <div class="card-body text-center px-2 px-md-3">
-                  <h3 class="card-body p-0 m-0">sonographic image</h3>
+                  <h3 class="card-body p-0 m-0" data-i18n="aiModel.sonographicImage">sonographic image</h3>
                 </div>
               </div>
             </div>
@@ -268,7 +281,7 @@
               </div>
               <div class="col-md-8 d-flex align-items-center">
                 <div class="card-body text-center px-2 px-md-3">
-                  <h3 class="card-body p-0 m-0">upload image</h3>
+                  <h3 class="card-body p-0 m-0" data-i18n="aiModel.uploadImage">upload image</h3>
                 </div>
               </div>
             </div>
@@ -281,7 +294,7 @@
               </div>
               <div class="col-md-8 d-flex align-items-center">
                 <div class="card-body text-center px-2 px-md-3">
-                  <h3 class="card-body p-0 m-0">Ai result</h3>
+                  <h3 class="card-body p-0 m-0" data-i18n="aiModel.aiResult">Ai result</h3>
                 </div>
               </div>
             </div>
@@ -290,7 +303,7 @@
 
         <div class="col-4 d-none d-md-inline-block">
           <div class="blop-13 d-flex justify-content-start align-items-center text-center position-absolute">
-            <h2 class="text-white ms-3 opacity-0">information about <br> AI model and <br> its accuracy</h2>
+            <h2 class="text-white ms-3 opacity-0" data-i18n="aiModel.info">information about <br> AI model and <br> its accuracy</h2>
           </div>
           <div class="blop-14 position-absolute">
             <img src="img/WhatsApp_Image_2024-10-14_at_00.36.21_453c7054-removebg-preview 1.png" alt="">
@@ -298,7 +311,7 @@
         </div>
       </div>
       <button class="btn px-3 align-self-center">
-        <a href="/ai-model/index.html" class="text-decoration-none text-white">test</a>
+        <a href="/ai-model/index.html" class="text-decoration-none text-white" data-i18n="aiModel.test">test</a>
       </button>
     </div>
     
@@ -315,25 +328,25 @@
         </div>
 
         <div class="col-md-5">
-          <h2 class="text-center opacity-0">fetal's brain disease</h2>
+          <h2 class="text-center opacity-0" data-i18n="articles.title">fetal's brain disease</h2>
           <div class="row">
             <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
-              <h3 class="card-title m-0">Arachnoid Cyst</h3>
-              <p class="card-body p-0 m-0">This is some text within a card body.</p>
+              <h3 class="card-title m-0" data-i18n="articles.arachnoidCyst.title">Arachnoid Cyst</h3>
+              <p class="card-body p-0 m-0" data-i18n="articles.arachnoidCyst.description">This is some text within a card body.</p>
             </div>
             <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
-              <h3 class="card-title m-0">Cerebellar Hypoplasia</h3>
-              <p class="card-body p-0 m-0">This is some text within a card body.</p>
+              <h3 class="card-title m-0" data-i18n="articles.cerebellarHypoplasia.title">Cerebellar Hypoplasia</h3>
+              <p class="card-body p-0 m-0" data-i18n="articles.cerebellarHypoplasia.description">This is some text within a card body.</p>
             </div>
             <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
-              <h3 class="card-title m-0">Colphocephaly</h3>
-              <p class="card-body p-0 m-0">This is some text within a card body.</p>
+              <h3 class="card-title m-0" data-i18n="articles.colphocephaly.title">Colphocephaly</h3>
+              <p class="card-body p-0 m-0" data-i18n="articles.colphocephaly.description">This is some text within a card body.</p>
             </div>
           </div>
 
           <div class="col-12 text-center">
             <button class="btn px-3">
-              <a href="/disease-pages" class="text-decoration-none text-white">see more</a>
+              <a href="/disease-pages" class="text-decoration-none text-white" data-i18n="articles.seeMore">see more</a>
             </button>
           </div>
         </div>
@@ -349,24 +362,24 @@
         </div>
         <div class="col-12 col-md-8 d-flex flex-wrap justify-content-center fst-italic g-0">
           <div class="col-6 p-2 col-md-4 d-flex flex-column text-center">
-            <h3 class="text-white">pages</h3>
-            <a href="" class="text-decoration-none text-white">home</a>
-            <a href="" class="text-decoration-none text-white">pregnancy-weeks</a>
-            <a href="" class="text-decoration-none text-white">baby names</a>
-            <a href="" class="text-decoration-none text-white">ai test</a>
+            <h3 class="text-white" data-i18n="footer.pages.title">pages</h3>
+            <a href="" class="text-decoration-none text-white" data-i18n="footer.pages.home">home</a>
+            <a href="" class="text-decoration-none text-white" data-i18n="footer.pages.pregnancyWeeks">pregnancy-weeks</a>
+            <a href="" class="text-decoration-none text-white" data-i18n="footer.pages.babyNames">baby names</a>
+            <a href="" class="text-decoration-none text-white" data-i18n="footer.pages.aiTest">ai test</a>
           </div>
 
           <div class="col-6 p-2 d-flex flex-column col-md-4 text-center">
-            <h3 class="text-white">our doctors</h3>
-            <a href="" class="text-decoration-none text-white">dr.mark</a>
-            <a href="" class="text-decoration-none text-white">dr.sara</a>
-            <a href="" class="text-decoration-none text-white">dr.john</a>
+            <h3 class="text-white" data-i18n="footer.doctors.title">our doctors</h3>
+            <a href="" class="text-decoration-none text-white" data-i18n="footer.doctors.drMark">dr.mark</a>
+            <a href="" class="text-decoration-none text-white" data-i18n="footer.doctors.drSara">dr.sara</a>
+            <a href="" class="text-decoration-none text-white" data-i18n="footer.doctors.drJohn">dr.john</a>
           </div>
 
           <div class="col-12 p-2 d-flex flex-column col-md-4 text-center">
-            <h3 class="text-white">support</h3>
-            <a href="" class="text-decoration-none text-white">email:example@gmail.com</a>
-            <a href="" class="text-decoration-none text-white">phone num: +20 12345678910</a>
+            <h3 class="text-white" data-i18n="footer.support.title">support</h3>
+            <a href="" class="text-decoration-none text-white" data-i18n="footer.support.email">email:example@gmail.com</a>
+            <a href="" class="text-decoration-none text-white" data-i18n="footer.support.phone">phone num: +20 12345678910</a>
           </div>
         </div>
         <div class="col-2 d-none d-md-flex justify-content-center align-items-center">
@@ -379,6 +392,7 @@
     <!-- Script Links -->
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="/js/translations.js"></script>
     <script src="/js/script.js"></script>
 </body>
 </html>

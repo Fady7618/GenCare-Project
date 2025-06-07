@@ -889,12 +889,12 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] button:nth-of-type(2):hover {
 }
 
 .back-btn {
-  position: fixed;
+  /* position: fixed; */
   width: 40px;
   height: 40px;
-  top: 20px;
+  /* top: 20px;
   left: 20px;
-  z-index: 1000;
+  z-index: 1000; */
   border-radius: 50% !important;
   transition: transform 0.3s ease, background-color 0.3s ease !important;
   background-color: #ffffff !important;

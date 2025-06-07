@@ -5,6 +5,8 @@ $secondary-hvr:#ffa6be;
 $secondary-2:#95cae4;
 $secondary-hvr-2:#8ad8ff;
 $secondary-3:#FFD9D2;
+
+
 ::-webkit-scrollbar{
     width: 5px;
     border-radius: 7px;
@@ -542,12 +544,12 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
         animation: ftrblp 4s cubic-bezier(.4,0,.66,.99) infinite forwards alternate;
     }
     .blop-16{
-        background: url(../img/Quantum\ brain\ wave!.gif);
+        background: url("../img/Quantum\ brain\ wave!.gif");
         @include blop(250px, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
         z-index: 1;
     }
     .blop-17{
-        background: url(../img/iOs\ Application-Icon-unscreen.gif);
+        background: url("../img/iOs\ Application-Icon-unscreen.gif");
         @include blop(250px, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
         z-index: 1;
     }
