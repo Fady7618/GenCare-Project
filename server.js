@@ -70,8 +70,8 @@ app.get('/baby-names/:letter', (req, res) => {
   }
 });
 
-// // Serve static files from the ai-model directory
-// app.use('/ai-model', express.static(path.join(__dirname, 'ai-model')));
+// Serve static files from the ai-model directory
+app.use('/ai-model', express.static(path.join(__dirname, 'ai-model')));
 
 // Or if you prefer route handlers:
 app.get('/ai-model', (req, res) => {
