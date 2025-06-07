@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const diseases = [
       {
-        img: 'Images/Arachnoid_Cyst_Treated_using_a_VP_Shunt.png',
+        img: '../public/img/Diseases/Arachnoid_Cyst_Treated_using_a_VP_Shunt.png',
         badge: '1th - 12th Weeks',
         title: 'Arachnoid Cyst',
         description: "is a fluid-filled sac that usually forms in the brain or spinal cord, within the arachnoid membrane surrounding the central nervous system. Often, it is congenital (present from birth), but it can also develop due to brain injury or infection.<br><br>" +
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "- Guiding individuals with symptoms to seek specialist help if they experience unusual symptoms like persistent headaches or balance problems."
       },
       {
-        img: 'Images/Clinical-impression-of-siblings-of-family-1-a-patient-1-b-patient-2.png',
+        img: '../public/img/Diseases/Clinical-impression-of-siblings-of-family-1-a-patient-1-b-patient-2.png',
         badge: '1th - 12th Weeks',
         title: 'Cerebellar Hypoplasia',
         description: "is a condition where the cerebellum (the part of the brain responsible for coordination, balance, and motor control) does not develop properly. It can be <strong>congenital</strong> (present at birth) or <strong>acquired</strong> (due to brain damage after birth).<br>"+
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
               "In summary, <strong>Cerebellar Hypoplasia</strong> is a neurological condition affecting coordination and balance, and while there is no cure, early treatment with therapy and support can help improve quality of life."
                     },
       {
-        img: 'Images/767679ab89a64fa5285bea4d60f36dce.jpg',
+        img: '../public/img/Diseases/767679ab89a64fa5285bea4d60f36dce.jpg',
         badge: '1th - 26th Weeks',
         title: 'Colphocephaly',
         description: "Colpocephaly is a rare congenital brain abnormality characterized by the disproportionate enlargement " +
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
               "- Severe cases may require lifelong care and face significant neurological challenges."
       },
       {
-        img: 'Images/WhatsApp Image 2025-01-09 at 18.00.51_fed83f97.jpg',
+        img: '../public/img/Diseases/WhatsApp Image 2025-01-09 at 18.00.51_fed83f97.jpg',
         badge: '3th - 4th Months',
         title: 'Encephalocele',
         description: "Encephalocele is a rare congenital condition where brain tissue and membranes protrude through an opening " +
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       },
       {
-        img: 'Images/Ventriculomegaly-Illustration_2021-05-04-152710.png',
+        img: '../public/img/Diseases/Ventriculomegaly-Illustration_2021-05-04-152710.png',
         badge: '18th - 24 Weeks',
         title: 'Mild Ventriculomegaly',
         description: "Mild Ventriculomegaly is a condition characterized by a slight enlargement of the brain's ventricles, " +
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
           "Developmental outcomes are typically positive when the condition resolves on its own or occurs in isolation."
       },
       {
-        img: 'Images/WhatsApp Image 2025-01-10 at 14.37.12_76b0cb58.jpg',
+        img: '../public/img/Diseases/WhatsApp Image 2025-01-10 at 14.37.12_76b0cb58.jpg',
         badge: '18th - 22th Weeks',
         title: 'Moderate Ventriculomegaly',
         description: "Moderate Ventriculomegaly is a condition where the brain's ventricles are enlarged more than in mild ventriculomegaly " +
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       },
       {
-        img: 'Images/Porencephaly-1.png',
+        img: '../public/img/Diseases/Porencephaly-1.png',
         badge: '8th - 24th Weeks',
         title: 'Polencephaly',
         description:
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       },
       {
-        img: 'Images/ventriculmegaly.gif',
+        img: '../public/img/Diseases/ventriculmegaly.gif',
         badge: '18th - 24th Weeks',
         title: 'Severe Ventriculomegaly',
         description: "Severe Ventriculomegaly is a condition where the brain's ventricles (fluid-filled spaces) become abnormally enlarged. " +
