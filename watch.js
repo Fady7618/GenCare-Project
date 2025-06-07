@@ -1,9 +1,9 @@
-import { exec } from 'child_process';
-import nodemon from 'nodemon';
+const { exec } = require('child_process');
+const nodemon = require('nodemon');
 
 nodemon({
   watch: ['**/*'],
-  ignore: ['node_modules', 'public/img', 'public/img-min'],
+  ignore: ['node_modules', 'public/img'],
   ext: 'js,html,css,json',
-  script: 'auto-push.sh' // or auto-push.bat
+  exec: '.\\auto-push.bat' // Use 'exec' to run the batch file
 });
