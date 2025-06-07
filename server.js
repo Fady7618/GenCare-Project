@@ -1,0 +1,1035 @@
+const express = require('express');
+const path = require('path');
+
+// Create Express app
+const app = express();
+
+// Set up static file serving
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
+app.use('/animate', express.static(path.join(__dirname, 'node_modules/animate.css')));
+app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
+app.use('/popper', express.static(path.join(__dirname, 'node_modules/@popperjs/core/dist/umd')));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Set up EJS as the view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+const babyNames = [
+  {
+    letter: 'A',
+    image: "/img/gif/baby- (1)",
+    boys: ['Ahmad', 'Ali', 'Amir', 'Ayman', 'Anas', 'Aziz', 'Abdullah', 'Arafat', 'Adnan', 'Ashraf', 'Akram', 'Aqil', 'Arif', 'Ammar'],
+    girls: ['Amina', 'Asma', 'Aisha', 'Amal', 'Aya', 'Abeer', 'Ahlam', 'Afaf', 'Anwar', 'Aziza', 'Arwa', 'Amani', 'Aseel', 'Alya']
+  },
+  {
+    letter: 'B',
+    image: "/img/gif/baby- (2)",
+    boys: ['Bilal', 'Bashir', 'Badr', 'Bassam', 'Burhan', 'Baha', 'Barakat', 'Basil', 'Bahjat', 'Bakr', 'Basel', 'Bashar', 'Burayd', 'Bishr'],
+    girls: ['Basma', 'Buthaina', 'Badia', 'Bahira', 'Bushra', 'Balqis', 'Barira', 'Bayan', 'Basira', 'Baraa', 'Batool', 'Banan', 'Basmah', 'Bilqis']
+  },
+  {
+    letter: 'C',
+    image: "/img/gif/baby- (3)",
+    boys: ['Cairo', 'Chakir', 'Chafik', 'Chahid', 'Chakib', 'Chems', 'Cherif', 'Chaaban', 'Chakir', 'Chawki', 'Chams', 'Chehrazad', 'Chayeb', 'Chawdar'],
+    girls: ['Chaima', 'Chiraz', 'Chayma', 'Chahla', 'Chadia', 'Chafika', 'Chahira', 'Chahida', 'Chamsa', 'Chaymaa', 'Chikha', 'Chehrazad', 'Chakiba', 'Chaimaa']
+  },
+  {
+    letter: 'D',
+    image: "/img/gif/baby- (4)",
+    boys: ['Dawood', 'Dani', 'Dhia', 'Dihya', 'Diyan', 'Dinar', 'Dahi', 'Dahiq', 'Dujan', 'Diyaa', 'Dhafer', 'Dhaif', 'Dakhil', 'Dawid'],
+    girls: ['Dina', 'Dalal', 'Dalia', 'Duaa', 'Danah', 'Dareen', 'Diyana', 'Durra', 'Dorra', 'Dima', 'Dunya', 'Daris', 'Dahlia', 'Dafna']
+  },
+  {
+    letter: 'E',
+    image: "/img/gif/baby- (5)",
+    boys: ['Elias', 'Ehab', 'Ezz', 'Emad', 'Ebrahim', 'Eyman', 'Ehsan', 'Essam', 'Eid', 'Ezzat', 'Elwan', 'Ehabuddin', 'Elham', 'Eidah'],
+    girls: ['Eman', 'Ebtisam', 'Elham', 'Esraa', 'Ehsan', 'Eiman', 'Enaam', 'Esmat', 'Elaf', 'Ebtihal', 'Eba', 'Eshraq', 'Ezdihar', 'Enas']
+  },
+  {
+    letter: 'F',
+    image: "/img/gif/baby- (6)",
+    boys: ['Fahd', 'Faris', 'Fadi', 'Fadel', 'Fawwaz', 'Fahim', 'Farouq', 'Fikri', 'Firas', 'Fuad', 'Fath', 'Fadil', 'Fateh', 'Fidyan'],
+    girls: ['Fatima', 'Farah', 'Fayza', 'Ferial', 'Fadia', 'Fadwa', 'Fahima', 'Fairouz', 'Fatin', 'Fiza', 'Furoozan', 'Fakhera', 'Fayrouz', 'Farhana']
+  },
+  {
+    letter: 'G',
+    image: "/img/gif/baby- (7)",
+    boys: ['Gamal', 'Ghassan', 'Ghanim', 'Ghazi', 'Ghaith', 'Gharib', 'Ghadir', 'Ghani', 'Ghufran', 'Ghumari', 'Ghazali', 'Ghalib', 'Ghufayrah', 'Ghiyath'],
+    girls: ['Ghada', 'Ghania', 'Ghaida', 'Ghina', 'Ghulay', 'Ghazal', 'Gulsun', 'Gulzar', 'Ghasna', 'Ghurra', 'Ghinwa', 'Ghaziyah', 'Ghaffari', 'Ghaibah']
+  },
+  {
+    letter: 'H',
+    image: "/img/gif/baby- (8)",
+    boys: ['Hassan', 'Hussein', 'Hamza', 'Harith', 'Hadi', 'Haitham', 'Hazem', 'Hilal', 'Hatem', 'Hisham', 'Hafiz', 'Humam', 'Habib', 'Harun'],
+    girls: ['Hala', 'Hanan', 'Hafsa', 'Huda', 'Husna', 'Hajer', 'Hibah', 'Hayat', 'Hasna', 'Hana', 'Hanadi', 'Hameeda', 'Hamida', 'Hadeel']
+  },
+  {
+    letter: 'I',
+    image: "/img/gif/baby- (9)",
+    boys: ['Ibrahim', 'Ismail', 'Imran', 'Ilyas', 'Idris', 'Izz', 'Ihsan', 'Ishaq', 'Irfan', 'Issa', 'Ibtisam', 'Imad', 'Ibad', 'Iqbal'],
+    girls: ['Iman', 'Iqra', 'Ibtisam', 'Isra', 'Ilham', 'Izzah', 'Inaam', 'Ibtihaal', 'Israa', 'Iffat', 'Izdihar', 'Imtithal', 'Inaya', 'Iqlima']
+  },
+  {
+    letter: 'J',
+    image: "/img/gif/baby- (10)",
+    boys: ['Jamal', 'Jaber', 'Jalal', 'Jibril', 'Jad', 'Jasim', 'Juhayl', 'Jalil', 'Jumah', 'Jundub', 'Jabir', 'Jafar', 'Jawad', 'Jalil'],
+    girls: ['Jumana', 'Jannah', 'Jihan', 'Jamila', 'Joud', 'Jawahir', 'Jalila', 'Jinan', 'Jasmin', 'Jannah', 'Jumayma', 'Juwairiya', 'Jazia', 'Jumaymah']
+  },
+  {
+    letter: 'K',
+    image: "/img/gif/baby- (11)",
+    boys: ['Kamal', 'Karim', 'Khalid', 'Khayr', 'Khalaf', 'Kaamil', 'Kareem', 'Khaleel', 'Khattab', 'Kinan', 'Kadir', 'Kais', 'Kazim', 'Kamaluddin'],
+    girls: ['Khadija', 'Karima', 'Kawthar', 'Kanza', 'Kifaya', 'Kulthum', 'Khadra', 'Khalida', 'Kashifa', 'Khansa', 'Karmila', 'Kiswah', 'Kainat', 'Kamilah']
+  },
+  {
+    letter: 'L',
+    image: "/img/gif/baby- (12)",
+    boys: ['Luqman', 'Latif', 'Lahab', 'Labib', 'Lazim', 'Labeeb', 'Labeed', 'Lafi', 'Luqaim', 'Luhaym', 'Lutfi', 'Lamis', 'Lubab', 'Lut'],
+    girls: ['Laila', 'Lubna', 'Lina', 'Lamis', 'Lamya', 'Latifa', 'Lujain', 'Lama', 'Lina', 'Layal', 'Layla', 'Lubaba', 'Lulwa', 'Layan']
+  },
+  {
+    letter: 'M',
+    image: "/img/gif/baby- (13)",
+    boys: ['Mohammad', 'Mahmoud', 'Mustafa', 'Musa', 'Mazin', 'Mansour', 'Mujahid', 'Muadh', 'Mikail', 'Malik', 'Mujtaba', 'Murad', 'Mudar', 'Muthana'],
+    girls: ['Maryam', 'Maha', 'Mona', 'Mariam', 'Manal', 'Maysa', 'Mehnaz', 'Mahira', 'Maysoon', 'Marwa', 'Majida', 'Masuma', 'Mufida', 'Mahjabeen']
+  },
+  {
+    letter: 'N',
+    image: "/img/gif/baby- (14)",
+    boys: ['Nabil', 'Naseem', 'Nasser', 'Nuh', 'Naeem', 'Najeeb', 'Najm', 'Nasir', 'Nawfal', 'Nizam', 'Numan', 'Nazir', 'Nadir', 'Nawaz'],
+    girls: ['Nadia', 'Nawal', 'Nour', 'Najwa', 'Naima', 'Nasreen', 'Nargis', 'Nashita', 'Nazia', 'Naznin', 'Nihal', 'Nayla', 'Nusayba', 'Nouran']
+  },
+  {
+    letter: 'O',
+    image: "/img/gif/baby- (15)",
+    boys: ['Omar', 'Osman', 'Owais', 'Othman', 'Obaid', 'Omaran', 'Omari', 'Owaisi', 'Othaim', 'Omid', 'Okeil', 'Owaiz', 'Othaimin', 'Owaib'],
+    girls: ['Omneya', 'Olfat', 'Ohood', 'Ojala', 'Oniyah', 'Omera', 'Omdah', 'Omaimah', 'Owaisha', 'Owaida', 'Ozza', 'Oyshee', 'Olamina', 'Omyra']
+  },
+  {
+    letter: 'P',
+    image: "/img/gif/baby- (16)",
+    boys: ['Parvez', 'Pakeez', 'Parsa', 'Paiman', 'Pirzada', 'Payan', 'Pazeer', 'Paymon', 'Pakiza', 'Parham', 'Patman', 'Pazir', 'Pirmohammed', 'Pirooz'],
+    girls: ['Parveen', 'Parisa', 'Pakiza', 'Peyman', 'Poonam', 'Pari', 'Parwana', 'Palwasha', 'Pazira', 'Parwina', 'Parya', 'Pahlaj', 'Peyvand', 'Paimona']
+  },
+  {
+    letter: 'Q',
+    image: "/img/gif/baby- (17)",
+    boys: ['Qasim', 'Qais', 'Qadir', 'Qudama', 'Qurban', 'Qudsi', 'Qudrat', 'Qutaiba', 'Qusay', 'Qaisar', 'Qamar', 'Qutayba', 'Qabir', 'Qudamah'],
+    girls: ['Qamar', 'Qistina', 'Qudsia', 'Qazala', 'Qurrat', 'Qurratulain', 'Qindeel', 'Qasira', 'Qudsiya', 'Qanita', 'Qaniyah', 'Qila', 'Qimat', 'Quds']
+  },
+  {
+    letter: 'R',
+    image: "/img/gif/baby- (18)",
+    boys: ['Rashid', 'Rami', 'Rauf', 'Rizwan', 'Raheem', 'Raif', 'Rafeeq', 'Rauf', 'Rayyan', 'Rafid', 'Ramzi', 'Raees', 'Rida', 'Rushd'],
+    girls: ['Rania', 'Ruqayya', 'Rimsha', 'Rabia', 'Rasha', 'Rabab', 'Rahila', 'Ramsha', 'Reem', 'Rukhsana', 'Rida', 'Raheela', 'Rana', 'Riham']
+  },
+  {
+    letter: 'S',
+    image: "/img/gif/baby- (19)",
+    boys: ['Salman', 'Saif', 'Sami', 'Sufyan', 'Saqib', 'Sharif', 'Shamil', 'Shakir', 'Sulayman', 'Shazil', 'Siddiq', 'Shihab', 'Shuja', 'Sahir'],
+    girls: ['Sara', 'Sumaya', 'Saba', 'Safiya', 'Sahar', 'Samiya', 'Sawsan', 'Suhaila', 'Shaima', 'Sakina', 'Saba', 'Shazia', 'Samira', 'Sundus']
+  },
+  {
+    letter: 'T',
+    image: "/img/gif/baby- (20)",
+    boys: ['Tariq', 'Tameem', 'Talha', 'Taher', 'Taqi', 'Tawfiq', 'Tawhid', 'Tarique', 'Tufail', 'Taslim', 'Taimoor', 'Tanzeel', 'Tafseer', 'Tahseen'],
+    girls: ['Tasneem', 'Tahira', 'Tazeen', 'Tuba', 'Taqwa', 'Tania', 'Tayba', 'Tabinda', 'Talha', 'Tajwar', 'Tahseen', 'Taseen', 'Taslima', 'Tawhida']
+  },
+  {
+    letter: 'U',
+    image: "/img/gif/baby- (21)",
+    boys: ['Usman', 'Umar', 'Ubaid', 'Uzair', 'Ulfat', 'Umair', 'Uqbah', 'Usaamah', 'Ubaydullah', 'Uwaymir', 'Uzziah', 'Urooj', 'Uthman', 'Umaarah'],
+    girls: ['Umme', 'Uzma', 'Ulya', 'Urfa', 'Umaima', 'Ushna', 'Ulfah', 'Urooj', 'Uzuri', 'Uleema', 'Usha', 'Ummarah', 'Umaiza', 'Umnia']
+  },
+  {
+    letter: 'V',
+    image: "/img/gif/baby- (22)",
+    boys: ['Vaseem', 'Vahid', 'Vasim', 'Vaseer', 'Vayid', 'Vali', 'Vashir', 'Vikram', 'Vaqas', 'Vohid', 'Vashiruddin', 'Vakeel', 'Vikrant', 'Vaseeq'],
+    girls: ['Vaniya', 'Vafa', 'Varda', 'Vashni', 'Viyana', 'Vayda', 'Vakeela', 'Venisa', 'Vishra', 'Vahida', 'Vione', 'Vanea', 'Vishma', 'Vanya']
+  },
+  {
+    letter: 'W',
+    image: "/img/gif/baby- (23)",
+    boys: ['Waseem', 'Wajid', 'Wali', 'Waheed', 'Wahab', 'Wahaj', 'Waseeq', 'Wasif', 'Waqas', 'Waqar', 'Warda', 'Wajahat', 'Wasim', 'Wasil'],
+    girls: ['Warda', 'Wafa', 'Widad', 'Waniya', 'Wahiba', 'Wajeeha', 'Wurood', 'Widad', 'Wasila', 'Wahiya', 'Walida', 'Waliyah', 'Waniya', 'Wahiba']
+  },
+  {
+    letter: 'X',
+    image: "/img/gif/baby- (24)",
+    boys: ['Xavier', 'Xahid', 'Xabeer', 'Xameer', 'Xahir', 'Xayyan', 'Xayad', 'Xabeel', 'Xaydan', 'Xasim', 'Xazier', 'Xali', 'Xanan', 'Xanif'],
+    girls: ['Xara', 'Xaina', 'Xamira', 'Xena', 'Xylia', 'Xanira', 'Xamira', 'Xarina', 'Xamara', 'Xanisa', 'Xelina', 'Xarifa', 'Xalia', 'Xerina']
+  },
+  {
+    letter: 'Y',
+    image: "/img/gif/baby- (25)",
+    boys: ['Yusuf', 'Yasir', 'Younis', 'Yazeed', 'Yaqoub', 'Yahya', 'Yahyan', 'Yazeer', 'Yameen', 'Yassir', 'Yunus', 'Yazdan', 'Yashar', 'Yamun'],
+    girls: ['Yasmin', 'Yumna', 'Yusra', 'Yara', 'Yamila', 'Yasira', 'Yaqoota', 'Yasmeena', 'Yuhaina', 'Yazmeen', 'Yumnah', 'Yasrina', 'Yaria', 'Yusmina']
+  },
+  {
+    letter: 'Z',
+    image: "/img/gif/baby- (26)",
+    boys: ['Zayd', 'Zahir', 'Zaki', 'Zubair', 'Zain', 'Zaheer', 'Zayyan', 'Zafar', 'Zakaria', 'Zeeshan', 'Zameer', 'Zaydan', 'Zareef', 'Zaman'],
+    girls: ['Zainab', 'Zara', 'Zoya', 'Zohra', 'Zakia', 'Zarmina', 'Zuleikha', 'Zeba', 'Zayna', 'Zahira', 'Zareen', 'Zubeda', 'Zafira', 'Zeenat']
+  }
+];
+
+const articles = [
+    {
+      week: 2,
+      title: "Weeks of Pregnancy",
+      color1:"#fcb900",
+      color2:"#FF6529",
+      title1:"Heightened sense of smell",
+      title2:"A boost in your basal body temperature (BBT)",
+      title3:"Fertilization",
+      title4:"1-Take your vitamins",
+      title5:"2-Consider this blood test",
+      title6:"3-Prepare your body for pregnancy",
+      video: "https://www.youtube.com/embed/S96T7YhtcNY?si=_P7IYrZv-ep6z01y",
+      content1: "Some studies have found that a woman's sense of smell gets stronger near ovulation – and it may be especially sensitive to male pheromones.",
+      content2: "You can use a special thermometer to take your BBT every morning. On the day after you ovulate, it goes up a bit and stays elevated until your next period.",
+      content3: "If you haven't yet, start taking a prenatal vitamin with at least 400 micrograms (mcg) of folic acid every day. Prenatal vitamins provide essential nutrients for you and your baby, including iron, vitamin D, and calcium.",
+      content4: "You and your partner may want to get genetic carrier screening to see whether you carry genes that would put your baby at risk for serious inherited illnesses. Although many of these conditions are rare, a large study found that 24 percent of those tested were carriers for at least one genetic mutation.",
+      content5: "aking the time to strengthen your belly and back before (or while) your body changes will benefit you throughout pregnancy and beyond. A stronger core prevents back problems as your bump grows, and even shortens your recovery time after childbirth.",
+      images: ["img/pregnancy weeks/week_2.svg"],
+    },
+    {
+      week: 3,
+      title: "Weeks of Pregnancy",
+      color1:"#F4683D",
+      color2:"#f7844a",
+      title1:"Basal body temperature stays high",
+      title2:"Gas and bloating",
+      title3:"Implantation",
+      title4:"1-Pay attention to your emotions",
+      title5:"2-Avoid overheating",
+      title6:"3-Improve your sleep",
+      video: "https://www.youtube.com/embed/swRzGWXkaKc?si=DVp5C5Az1mmtnw0T",
+      content1: "If you're charting your temperature, it should stay elevated this week. To keep track, use a basal body thermometer.",
+      content2: "The hormone progesterone relaxes muscles throughout your body, including in your digestive tract. These relaxed muscles slow down your digestion.",
+      content3: "When you're waiting to learn whether you're pregnant or not, or just finding out, it's normal to be anxious. If you're feeling stressed or worried, talk to your partner or a trusted friend. Or, try writing down everything that's bothering you.",
+      content4: "Hot baths are okay during pregnancy as long as they aren't too hot. But avoid steam baths, hot tubs, and saunas.",
+      content5: "When pregnancy-related sleep problems hit in a few months, be ready for them. Create better habits around sleep and work on good sleep practices like establishing a regular bedtime routine and making your bedroom a sleep sanctuary.",
+      images: ["img/pregnancy weeks/week_3.svg"],
+    },
+    {
+      week: 4,
+      title: "Weeks of Pregnancy",
+      color1:"#40454d",
+      color2:"#66696d",
+      title1:"Taking a pregnancy test",
+      title2:"Mood swings",
+      title3:"Your baby is about the size of a poppy seed",
+      title4:"1-Make sure your medicine is pregnancy-safe",
+      title5:"2-Soothe your digestive system",
+      video: "https://www.youtube.com/embed/nEo06vTGgWE?si=MzlUX9vAk_X_gNFq",
+      content1: "By the end of this week, you may be able to get a positive pregnancy test. Pregnancy tests work by detecting the presence of a hormone called (hCG) in your urine.",
+      content2: "Hormones, stress, and exhaustion all contribute to mood swings during pregnancy, which can be strongest in the first trimester.",
+      content3: "Always check with your provider before you take any kind of medicine during pregnancy – prescription medicine or even an over-the-counter (OTC) product.",
+      content4: "If you're plagued by gas, bloating, or an uncomfortable sensation in your gut, try eating smaller meals throughout the day. Eat slowly and chew your food well, don't drink too much water during meals, and avoid carbonated beverages, gum, and the artificial sweetener sorbitol.",
+      images: ["img/pregnancy weeks/week_4.svg"],
+    },
+    {
+      week: 5,
+      title: "Weeks of Pregnancy",
+      color1:"#b8a171",
+      color2:"#eddbae",
+      title1:"Feeling pregnant?",
+      title2:"Lungs and gut",
+      title3:"Your baby is about the size of a sesame seed",
+      title4:"1-Take your prenatal vitamin",
+      title5:"2-Cut down on caffeine",
+      title6:"3-Put together a family health history",
+      video: "https://www.youtube.com/embed/SweS2IRqwPQ?si=H9tbeRDmwwg0ooWi",
+      content1: "You may be growing more aware of early pregnancy symptoms, including fatigue, achy or swollen breasts, nausea, and the need to pee more often.",
+      content2: "The third layer, or endoderm, will become the lungs, intestines, and early urinary system, as well as the thyroid, liver, and pancreas.",
+      content3: "If you haven't started taking a prenatal vitamin yet, now's the time to start. It's particularly critical to get enough folic acid now, because it greatly reduces your baby's risk of developing neural tube birth defects such as spina bifida.",
+      content4: "Studies have linked high caffeine consumption to miscarriage and other pregnancy problems. That's why the American College of Obstetricians and Gynecologists advises expectant moms to limit their caffeine intake to 200 mg per day or less (that's about one large cup of coffee).",
+      content5: "Talk to relatives on both sides about your families' medical histories. Your provider will want to know whether any chronic conditions or genetic abnormalities run in either of your families.",
+      images: ["img/pregnancy weeks/week_5.svg"],
+    },
+    {
+      week: 6,
+      title: "Weeks of Pregnancy",
+      color1:"#ffe79c",
+      color2:"#fcb900",
+      title1:"Is bleeding normal?",
+      title2:"Hearing your baby's heartbeat",
+      title3:"Your baby is about the size of a lentil",
+      title4:"1-Research foods to avoid during pregnancy",
+      title5:"2-Learn about prenatal testing options",
+      title6:"3-Try to reduce stress",
+      video: "https://www.youtube.com/embed/N2UPjGxfkIY?si=9ama7otOeuXrkiZp",
+      content1: "One in four women have some bleeding during this trimester. If you do, call your healthcare provider and get it checked out.",
+      content2: "Your baby's heart isn't fully developed, but cells in the heart tube have started beating fast, around 160 times a minute.",
+      content3: "During pregnancy, it's wise to skip some foods completely (we're looking at you, deli egg salad). But many other foods that are otherwise unsafe for pregnancy are actually fine if you take a few precautions, like cooking them thoroughly.",
+      content4: "Screening tests use blood samples and ultrasound to help assess your baby's chances of having Down syndrome or other chromosomal differences. The screenings are non-invasive and don't pose any risk to you or your baby.",
+      content5: "High levels of chronic stress aren't good for you or your baby. Try to stress less during pregnancy by surrounding yourself with positive people, taking breaks and deep breaths, and blowing off steam by exercising, listening to music, or journaling.",
+      images: ["img/pregnancy weeks/week_6.svg"],
+    },
+    {
+      week: 7,
+      title: "Weeks of Pregnancy",
+      color1:"#122466",
+      color2:"#3767d3",
+      title1:"Your baby's eyes",
+      title2:"Brain development",
+      title3:"Your baby is about the size of a blueberry",
+      title4:"1-Do your best to eat well",
+      title5:"2-Predict your baby's sex",
+      title6:"3-Decide when to announce your pregnancy",
+      video: "https://www.youtube.com/embed/OSvGdlH01ho?si=QCoH1r10b0J2vp1-",
+      content1: "The main parts of the eye that allow your baby to see – the cornea, iris, pupil, lens, and retina",
+      content2: "The neural tube that becomes your baby's spinal column and brain has formed and closed on both ends, with your baby's brain at the top.",
+      content3: "Don't worry if you can't eat a well-rounded diet in your first trimester – nausea can make this impossible. Just do the best you can to eat well.",
+      content4: "Boy or girl? It's too early to tell, but you can try one of these highly unscientific gender predictor tests",
+      content5: "Some expecting moms wait until after the first trimester, when the risk of miscarriage drops, while others announce it right away. Some wait to tell their co-workers or boss to avoid being treated differently at work, while others want their workplace buds to understand why they're a little green around the gills.",
+      images: ["img/pregnancy weeks/week_7.svg"],
+    },
+    {
+      week: 8,
+      title: "Weeks of Pregnancy",
+      color1:"#852714",
+      color2:"#b64426",
+      title1:"Breast changes",
+      title2:"Weird pregnancy dreams",
+      title3:"Your baby is about the size of a kidney bean",
+      title4:"1-Pay attention to your mental health",
+      title5:"2-Use sunscreen",
+      title6:"3-Learn about pregnancy weight gain",
+      video: "https://www.youtube.com/embed/e6LW_EHKOdw?si=74R_ia8QwaiDV_72",
+      content1: "Your breasts may be tender and swollen by now. If your old bras are feeling tight, buy a few good maternity bras for support.",
+      content2: "First you give birth to ... your partner. Then you make a speedy getaway in a school bus. Finally, you're engulfed by a tidal wave.",
+      content3: "It's common to feel moody during pregnancy. But if you're feeling more than a little blue, or if these emotions persist for more than two weeks, take our prenatal depression quiz and discuss the results with your healthcare provider.",
+      content4: "It's always important to use sunscreen, but during pregnancy it can help you avoid a condition called melasma or chloasma – darker patches of skin on your face or body, which may be triggered by hormonal changes.",
+      content5: "Wondering how much pregnancy weight to gain? It depends on your pre-pregnancy body mass index and whether or not you're carrying twins or multiples. If you're at a healthy weight, aim to gain 1 to 5 pounds in the first trimester and about 1 pound per week after that.",
+      images: ["img/pregnancy weeks/week_8.svg"],
+    },
+    {
+      week: 9,
+      title: "Weeks of Pregnancy",
+      color1:"#004c43",
+      color2:"#d2f25c",
+      title1:"Your baby's body",
+      title2:"Constipation",
+      title3:"Your baby is about the size of a grape",
+      title4:"1-Start a daily ritual to connect with your baby",
+      title5:"2-Share your pregnancy with your partner",
+      title6:"3-Start walking",
+      video: "https://www.youtube.com/embed/94lb0c7EZrc?si=Zxm8-HPR0BY5ptMN",
+      content1: "Your baby has all the essential body parts now, including elbows and knees. On your baby's face, the upper lip, nose, and eyelids have formed.",
+      content2: "Up to half of pregnant women will have constipation during pregnancy. Keep things moving with plenty of water and high-fiber foods.",
+      content3: "It's not too early to start bonding. Take some time each day to sit quietly: Focus on the miracle unfolding inside you, and plan for the kind of parent you want to be. Or you may want to journal or write a letter to your baby.",
+      content4: "Though your partner may never understand the visceral realities of pregnancy, they can still participate in special moments and bond with your baby before birth. You can involve your partner in your pregnancy by encouraging them to talk to the baby, reading pregnancy books.",
+      content5: "Walking is a safe activity you can continue throughout pregnancy, and one of the easier ways to start exercising if you haven't previously been active. If you've been walking for exercise, keep it up.",
+      images: ["img/pregnancy weeks/week_9.svg"],
+    },
+    {
+      week: 10,
+      title: "Weeks of Pregnancy",
+      color1:"#fc8e2c",
+      color2:"#30dea8",
+      title1:"Hearing the heartbeat",
+      title2:"NIPT test",
+      title3:"Your baby is about the size of a kumquat",
+      title4:"1-Try prenatal yoga",
+      title5:"2-Get help for morning sickness",
+      title6:"3-Watch out for UTIs",
+      video: "https://www.youtube.com/embed/9VBNL0YRmP4?si=OIczkc60iyEmLNbU",
+      content1: "You may hear your baby's heartbeat on a fetal Doppler during your next prenatal visit. It's much faster than an adult heartbeat.",
+      content2: "ou can take the NIPT blood test (short for noninvasive prenatal testing) this week. It screens for Down syndrome and a few other conditions.",
+      content3: "Yoga focuses on stretching and strengthening, awareness of the breath, and engaging the mind and spirit. Prenatal yoga is specifically tailored for expecting moms to provide safe exercise and help prepare for labor, birth, and parenting.",
+      content4: "To soothe morning sickness, it can help to have five to six small meals a day, eat cold foods, and have someone else prepare your food. Some expecting moms find that cooking smells trigger nausea, and it's easier to get take-out from a restaurant or ready-to-eat foods from the grocery store.",
+      content5: "Urinary tract infections (UTIs) are more common during pregnancy. Let your caregiver know if you have pain when urinating or during sex, pelvic discomfort or lower abdominal pain, a frequent urge to pee even when little urine comes out, or cloudy and foul-smelling urine.",
+      images: ["img/pregnancy weeks/week_10.svg"],
+    },
+    {
+      week: 11,
+      title: "Weeks of Pregnancy",
+      color1:"#173a91",
+      color2:"#dc7559",
+      title1:"Your baby's fingers and toes",
+      title2:"Headaches",
+      title3:"Your baby is about the size of a fig",
+      title4:"1-Learn about pregnancy weight gain",
+      title5:"2-Eat calcium-rich foods",
+      title6:"3-Save time at the doctor's office",
+      video: "https://www.youtube.com/embed/Y37_svGjaQ8?si=u2et0YB7TAF_OUqj",
+      content1: "Your baby's tiny fingers and toes have lost their webbing and are distinct – and much longer.",
+      content2: "Headaches in the first trimester are often caused by hormonal changes, stress, congestion, allergies, lack of sleep, or dehydration.",
+      content3: "Don't worry if nausea has made it impossible for you to eat well or if you haven't put on much weight yet. If you start at a healthy weight, experts recommend gaining 1 to 5 pounds during the first trimester.",
+      content4: "Getting enough calcium is crucial during pregnancy. Your baby needs calcium for strong bones, teeth, nerves, and muscles. If you don't get enough calcium in your diet during pregnancy.",
+      content5: "You'll be going to a lot of prenatal appointments: They're typically every four weeks in the first and second trimesters, and even more often in the third trimester. One pro tip: Schedule your checkups for first thing in the morning or the first appointment after lunch.",
+      images: ["img/pregnancy weeks/week_11.svg"],
+    },
+    {
+      week: 12,
+      title: "Weeks of Pregnancy",
+      color1:"#198371",
+      color2:"#66dd66",
+      title1:"Your growing uterus",
+      title2:"Your baby is fully formed",
+      title3:"Your baby is about the size of a lime",
+      title4:"1-Make a baby budget",
+      title5:"2-Start a pregnancy workout",
+      title6:"3-Stay hydrated",
+      video: "https://www.youtube.com/embed/bvF-VGow5so?si=lxztRqJjws6BxhM-",
+      content1: "Bones are beginning to harden in your baby's skeleton, especially longer bones and the skull. Your baby's teeth and bones are becoming denser.",
+      content2: "All of your baby's vital organs and body parts are in place. They'll continue to develop throughout your pregnancy.",
+      content3: "Sit down with your partner to discuss how you'll handle baby expenses – baby clothes, diapers, toys, feeding supplies, and baby gear add up fast. If you'll pay for childcare, it can take a huge bite out of your monthly budget.",
+      content4: "Exercise helps you develop the strength and endurance you'll need to manage the extra weight you'll be carrying; prepare for childbirth; and prevent some of the aches and pains of pregnancy. It's a great stress reducer and mood booster, too.",
+      content5: "Drinking enough water can help prevent common problems in pregnancy such as constipation, hemorrhoids, and urinary tract and bladder infections. It's recommended that pregnant women drink about ten 8-ounce cups of water or other beverages each day, although this target isn't an exact science.",
+      images: ["img/pregnancy weeks/week_12.svg"],
+    },
+    {
+      week: 13,
+      title: "Weeks of Pregnancy",
+      color1:"#02673b",
+      color2:"#6cdfb8",
+      title1:"Teeth and bones",
+      title2:"Cramping",
+      title3:"Your baby is about the size of a peapod",
+      title4:"1-Get ready for more prenatal visits",
+      title5:"2-Stock up on healthy pregnancy foods",
+      title6:"3-Try sleeping on your side",
+      video: "https://www.youtube.com/embed/T1IU3CPapPk?si=yPBOa3vCyyb8TJzs",
+      content1: "Bones are beginning to harden in your baby's skeleton, especially longer bones and the skull. Your baby's teeth and bones are becoming denser.",
+      content2: "Occasional cramping during pregnancy is common. It could be caused by anything from gas and bloating to round ligament pain.",
+      content3: "During the second trimester, you'll typically see your doctor or midwife once every four weeks. Find out what will happen at second trimester prenatal appointments.",
+      content4: "During pregnancy, good nutrition is more important than ever. But it can be hard to eat well when you're dealing with nausea, food aversions, heartburn, or indigestion.",
+      content5: "Exercise helps you develop the strength and endurance you'll need to manage the extra weight you'll be carrying; prepare for childbirth; and prevent some of the aches and pains of pregnancy. It's a great stress reducer and mood booster, too.",
+      images: ["img/pregnancy weeks/week_13.svg"],
+    },
+    {
+      week: 14,
+      title: "Weeks of Pregnancy",
+      color1:"#007662",
+      color2:"#fce03d",
+      title1:"Making faces",
+      title2:"They grow so fast!",
+      title3:"Your baby is about the size of a lemon",
+      title4:"1-Ask for support at work",
+      title5:"2-Invest in a good moisturizer",
+      title6:"3-Get better sleep",
+      video: "https://www.youtube.com/embed/dvFd0MQwohg?si=Ju1_RL-tRs01FSR-",
+      content1: "Your baby's facial muscles are getting a workout. Those tiny features can squint, frown, and grimace. Your baby is also making sucking and chewing movements.",
+      content2: "Your baby hasn't doubled in length in a week – there's just a change in how they're measured at 14 weeks (from head to bottom to head to toe).",
+      content3: "Working while pregnant isn't always easy. If your job is strenuous, you're around harmful chemicals, or you have certain pregnancy complications, you might have to modify your tasks or stop working. (There are laws in place that protect you from discrimination because of pregnancy, and you may be able to receive disability benefits.)",
+      content4: "Slathering on lotion and creams may not prevent stretch marks, but this will reduce itchiness. Find out more about stretch marks and itchy skin during pregnancy.",
+      content5: "There are plenty of reasons why it's hard to sleep well when you're pregnant, but there are plenty of remedies to try, too. Cut down on caffeine (which you'll need to do during pregnancy anyway), try relaxation techniques,",
+      images: ["img/pregnancy weeks/week_14.svg"],
+    },
+    {
+      week: 15,
+      title: "Weeks of Pregnancy",
+      color1:"#f2c59d",
+      color2:"#d34124",
+      title1:"Baby gender predictor",
+      title2:"Nose bleeds",
+      title3:"Your baby is about the size of an apple",
+      title4:"1-Keep a pregnancy journal",
+      title5:"2-Start a pregnancy exercise routine",
+      title6:"3-Practice affirmations",
+      video: "https://www.youtube.com/embed/4nPzFHkqtQw?si=pjRkpaqyjZRuWBco",
+      content1: "If you have an ultrasound coming up, you may be able to find out your baby's sex if you don't know already.",
+      content2: "Keep the tissues handy: About 20% of pregnant women have nosebleeds thanks to increased blood volume and blood vessel expansion in the nose.", 
+      content3: "Journaling is good for you! Whether you keep an actual journal or just jot down a few notes on your phone, you'll love sharing these stories with your child someday.",
+      content4: "If you're feeling up to it, now is a good time to start a regular pregnancy workout. Joining a class can help motivate you to stick with it. And many women find that prenatal exercise classes are a wonderful way to bond with and get support from other moms-to-be.",
+      content5: "An affirmation is a positive statement you repeat to yourself to overcome negative thinking. For example, if you have fears about giving birth, you could say to yourself, I trust my body to know what to do,",
+      images: ["img/pregnancy weeks/week_15.svg"],
+    },
+    {
+      week: 16,
+      title: "Weeks of Pregnancy",
+      color1:"#007662",
+      color2:"#dbdc52",
+      title1:"Baby kicks coming soon",
+      title2:"Pregnancy glow",
+      title3:"Your baby is about the size of an avocado",
+      title4:"1-Avoid unsafe activities",
+      title5:"2-Track your weight gain",
+      title6:"3-Start a baby names list",
+      video: "https://www.youtube.com/embed/oLixySZsX-Y?si=gFxumhEmQeblqOVX",
+      content1: "You'll probably start feeling your baby move between 16 and 22 weeks, most likely when you're sitting or lying quietly.",
+      content2: "Glowing skin during pregnancy isn't a myth – it's a real thing that happens thanks to fluctuating hormone levels and increased blood flow.",
+      content3: "As your belly grows, it's important to avoid unsafe activities that carry a high risk of falling or that may cause trauma to your abdomen. That means scuba diving, contact sports, snowboarding, downhill skiing, four wheelers, horseback riding, and some amusement park rides are off-limits.",
+      content4: "Your caregiver will monitor your weight to make sure you're in a healthy range and gaining at a good pace. You can also use our pregnancy weight gain calculator to stay on track.",
+      content5: "Here's a good way to come up with baby names you and your partner can live with: Make a list of ten names you like. Have your partner do the same. Trade lists and take turns crossing off names you don't love until you (hopefully) have some in common.",
+      images: ["img/pregnancy weeks/week_16.svg"],
+    },
+    {
+      week: 17,
+      title: "Weeks of Pregnancy",
+      color1:"#007662",
+      color2:"#a4c3f1",
+      title1:"Your baby can hear you",
+      title2:"Better sleep",
+      title3:"Your baby is about the size of a turnip",
+      title4:"1-Try some relaxation techniques",
+      title5:"2-Learn the best way to buckle up",
+      title6:"3-Get meal planning help",
+      video: "https://www.youtube.com/embed/6Q9sqY6N7FA?si=EYJ6y9TYTqCXar3l",
+      content1: "Between 16 and 22 weeks, your baby will start to hear sounds inside your body, including the noises made by your heartbeat, breathing, and digestion.",
+      content2: "Enjoy it – and switch to sleeping on your side soon if you haven't already. Side sleeping places the least pressure on your veins and internal organs.",
+      content3: "Deep breathing, guided imagery, prenatal yoga and massage, and progressive muscle relaxation can help you stay on an even keel and even sleep better. Try practicing these relaxation techniques now – they may be important tools to navigate early parenthood.",
+      content4: "It's extra important to wear your seat belt during pregnancy – and to buckle up the right way. Secure the lap portion low under your belly and snug across your hip bones, and position the shoulder harness snugly between your breasts and off to the side of your belly.",
+      content5: "Eating well during pregnancy is crucial to support your growing baby and get the nutrients you both need. But it's easy to feel overwhelmed by pregnancy nutrition advice and worry that your diet will never measure up. Don't worry: There are a few simple, online tools to help with pregnancy meal planning.",
+      images: ["img/pregnancy weeks/week_17.svg"],
+    },
+    {
+      week: 18,
+      title: "Weeks of Pregnancy",
+      color1:"#18a058",
+      color2:"#94de61",
+      title1:"Mid-pregnancy ultrasound",
+      title2:"Girl and boy parts",
+      title3:"Your baby is about the size of a bell pepper",
+      title4:"1-Prepare your older children",
+      title5:"2-Eat iron-rich foods",
+      title6:"3-Sign up for birth classes",
+      video: "https://www.youtube.com/embed/BWTdB5k9rUk?si=dUP_95GnEh_6I7is",
+      content1: "Get ready to see your baby! You'll have an ultrasound between 18 and 22 weeks to check on your baby's health and development.",
+      content2: "If you're having a girl, her uterus and fallopian tubes are formed and in place. If you're having a boy, his genitals are visible now.",
+      content3: "If you already have a child, the new baby may rock their world even more than yours.Most important, be sure to spend one-on-one time with the future big sibling before your newest addition arrives.",
+      content4: "You need extra iron during pregnancy (27 mg a day instead of 18 mg) especially in the second and third trimesters. You have a lot more blood than usual now, and you need iron in your blood to make the protein that delivers oxygen to the body.",
+      content5: "Childbirth classes, which last anywhere from a day to a month or longer, are highly recommended to help you prepare for birth. You'll learn what to expect before, during, and after labor, plus techniques to help you manage labor pain.",
+      images: ["img/pregnancy weeks/week_18.svg"],
+    },
+    {
+      week: 19,
+      title: "Weeks of Pregnancy",
+      color1:"#9b2715",
+      color2:"#317c29",
+      title1:"Fingerprints",
+      title2:"Skin changes",
+      title3:"Your baby is about the size of an heirloom tomato",
+      title4:"1-Connect with other parents",
+      title5:"2-Improve your sleep",
+      title6:"3-Plan something fun",
+      video: "https://www.youtube.com/embed/K5w7Qfo5F_0?si=C5cHVb3xu0nRTb0W",
+      content1: "The skin on your baby's fingers and toes has formed distinct patterns. These fingerprints (and toeprints) are now permanent and unique.",
+      content2: "Are the palms of your hands red? It's from extra estrogen. You may also have patches of darkened skin on your upper lip, cheeks, and forehead – that's called melasma.",
+      content3: "People in the same stage of parenting can be a lifeline. Find a group of non-judgmental parents, whether that's an in-person mom's group, a prenatal yoga class.",
+      content4: "It doesn't matter how determined you are to rest up before your baby comes, your body has other plans. Whether you constantly need to pee, feel anxious, can't get comfortable in bed, wake up hungry, or have heartburn.",
+      content5: "Take a moment to enjoy this baby-free time. Some ideas: Buy tickets for a performance or live music, go to a late-night movie.",
+      images: ["img/pregnancy weeks/week_19.svg"],
+    },
+    {
+      week: 20,
+      title: "Weeks of Pregnancy",
+      color1:"#ffe79c",
+      color2:"#efc800",
+      title1:"You're halfway there!",
+      title2:"Your baby can taste",
+      title3:"Your baby is about the size of a banana",
+      title4:"1-Treat yourself",
+      title5:"2-Do a 'brain dump'",
+      title6:"3-Look for a pediatrician",
+      video: "https://www.youtube.com/embed/Xz8jyl5Ahp0?si=wETtTDAguV_WyNHM",
+      content1: "You're at the midpoint in your pregnancy – or maybe a little more or less. Most women don't deliver exactly on their due date.",
+      content2: "Many of your baby's taste buds can now transmit taste signals to their brain, and your baby is swallowing molecules of the food you eat.",
+      content3: "You're at the halfway point in your pregnancy, so celebrate! do something nice for yourself like getting books from the library, going on a beautiful walk, or taking a bubble bath.",
+      content4: "If you're feeling stressed or having trouble falling asleep because your mind is racing, try writing down everything that's bothering you in a journal.",
+      content5: "You're going to see your baby's doctor a lot in the first few years. Get some tips on choosing a doctor for your baby, and make sure to pick someone you genuinely connect with. You can ask your ob-gyn or midwife, friends, and relatives for recommendations.",
+      images: ["img/pregnancy weeks/week_20.svg"],
+    },
+    {
+      week: 21,
+      title: "Weeks of Pregnancy",
+      color1:"#c46c1f",
+      color2:"#61dcb3",
+      title1:"Swimming during pregnancy",
+      title2:"Your baby's skin",
+      title3:"Your baby is about the size of a carrot",
+      title4:"1-Weight gain",
+      title5:"2-Heartburn",
+      title6:"3-Bleeding gums",
+      video: "https://www.youtube.com/embed/QnICrs3bNaA?si=bB7x8Yof4m07n81M",
+      content1: "Swimming is one of the best exercises for expecting moms. It's low-impact and gentle on your body, and can help ease pregnancy aches and pains.",
+      content2: "Smooth, gorgeous skin is in your baby's future – but for now, their skin is wrinkled and translucent. It appears red because of visible blood vessels.",
+      content3: "At this point in pregnancy, you may be gaining about a pound a week. To learn what a healthy weight gain is for you during pregnancy, talk to your doctor or midwife",
+      content4: "Heartburn is a burning sensation that often extends from the bottom of the breastbone to the lower throat. It's common during pregnancy because of hormonal and physical changes.",
+      content5: "About half of expecting moms get pregnancy gingivitis – inflamed gums that bleed when brushed or flossed. It's not likely to harm your baby or otherwise affect your pregnancy unless you have severe gum disease.",
+      images: ["img/pregnancy weeks/week_21.svg"],
+    },
+    {
+      week: 22,
+      title: "Weeks of Pregnancy",
+      color1:"#ffe79c",
+      color2:"#f1c630",
+      title1:"Pets and pregnancy",
+      title2:"Plus-size pregnancy",
+      title3:"Your baby is about the size of a spaghetti squash",
+      title4:"1-Your baby's hair",
+      title5:"2-Hearing your heartbeat",
+      title6:"3-Leg cramps",
+      video: "https://www.youtube.com/embed/RNG_JLWPepA?si=18IrxZEi79845E0V",
+      content1: "Is your dog extra protective? Is your cat curling up on your belly? Many animal experts and pet lovers agree that pets can sense pregnancy (or at least pregnancy-related changes).",
+      content2: "You can have a healthy plus-size pregnancy. Being overweight or obese raises your risk for some complications, but many of these are manageable – and in some cases preventable.",
+      content3: "Baby hair is visible on your little one's head. It's thin now, but may be thick and lustrous by the end of pregnancy.",
+      content4: "Your baby may be able to hear sounds from inside your body, such as noises from your breathing, heartbeat, and digestion.",
+      content5: "You may start having leg cramps during your second trimester, especially at night when you're trying to sleep.f you have one, stretch your calf muscles immediately by straightening your leg and flexing your toes back towards your shin.",
+      images: ["img/pregnancy weeks/week_22.svg"],
+    },
+    {
+      week: 23,
+      title: "Weeks of Pregnancy",
+      color1:"#e08b14",
+      color2:"#2ec12e",
+      title1:"Top pregnancy foods",
+      title2:"Baby name inspiration",
+      title3:"Your baby is about the size of a large mango",
+      title4:"1-Your baby's digestive system",
+      title5:"2-Baby movement",
+      title6:"3-Pregnancy cravings",
+      video: "https://www.youtube.com/embed/ePvHB32x8IU?si=7eDA0FAO4_kxec-3",
+      content1: "Salmon helps with fetal brain development. Eggs help prevent certain birth defects. Avocados can ward off leg cramps.",
+      content2: "Has the baby-naming game left you stumped? If you're fresh out of ideas, try our Baby Names Finder.",
+      content3: "The wave-like movements that propel food along your baby's digestive tract begin now.",
+      content4: "Those subtle flutters you've noticed may begin to feel stronger. Instead of something like butterfly wings, baby movements will evolve into gentle kicks and jabs.",
+      content5: "Now that your appetite has likely returned (perhaps stronger than ever), you might be having intense cravings.",
+      images: ["img/pregnancy weeks/week_23.svg"],
+    },
+    {
+      week: 24,
+      title: "Weeks of Pregnancy",
+      color1:"#007662",
+      color2:"#f1c630",
+      title1:"Your baby's lungs",
+      title2:"Gaining weight",
+      title3:"Your baby is about the size of corn",
+      title4:"1-Melasma",
+      title5:"2-Increased appetite",
+      title6:"3-Shortness of breath",
+      video: "https://www.youtube.com/embed/DDHeCGF5TYI?si=nq1x1eh7byU7F61K",
+      content1: "Respiratory sacs at the tips of the smallest branches of your baby's lungs are growing and multiplying",
+      content2: "Your baby cuts a pretty lean figure at this point, but their body is filling out proportionally",
+      content3: "Hormonal changes trigger an increase in melanin production during pregnancy. For some women, this will cause dark patches of skin called melasma.",
+      content4: "Noticing an increased appetite? In the second trimester, you may feel hungrier than ever before. It's only natural: You need more calories and nutrients now to support your growing baby and your changing body",
+      content5: "Feeling short of breath is common during pregnancy. Pregnant women have an increased need for oxygen, and may feel breathless if their blood pressure is higher during pregnancy or if they have excess amniotic fluid.",
+      images: ["img/pregnancy weeks/week_24.svg"],
+    },
+    {
+      week: 25,
+      title: "Weeks of Pregnancy",
+      color1:"#007662",
+      color2:"#a4c3f1",
+      title1:"Safe pregnancy exercise",
+      title2:"Staying hydrated",
+      title3:"Your baby is about the size of a rutabaga",
+      title4:"1-Gaining baby fat",
+      title5:"2-Sleeping like a baby",
+      title6:"3-Dizziness",
+      video: "https://www.youtube.com/embed/KW4WxZdO-Ok?si=ewKhrbAtzNtBWb7k",
+      content1: "Most women can keep exercising throughout pregnancy – and exercise has lots of benefits. But as your body changes, you'll need to modify your workouts.",
+      content2: "You've probably heard it a thousand times by now, but it's true – staying hydrated during pregnancy is important. Try to drink about 10 glasses of water a day.",
+      content3: "Your baby will soon exchange that long, lean look for some baby fat. Wrinkled skin will begin to smooth out, and they'll start to look more and more like a newborn.",
+      content4: "Your baby spends most of their time sleeping, and cycles between rapid eye movement (REM) sleep and non-REM sleep every 20 to 40 minutes.",
+      content5: "During pregnancy, your cardiovascular system is working harder than ever. The volume of blood in your body has increased by as much as 50 percent, and your heart rate is faster.",
+      images: ["img/pregnancy weeks/week_25.svg"],
+    },
+    {
+      week: 26,
+      title: "Weeks of Pregnancy",
+      color1:"#d6ff66",
+      color2:"#17a27b",
+      title1:"Maternity picture ideas",
+      title2:"3D ultrasound",
+      title3:"Your baby is about the size of a scallion",
+      title4:"1-Your baby's lungs",
+      title5:"2-Responding to sounds",
+      title6:"3-Testicles dropping",
+      video: "https://www.youtube.com/embed/eV7pMMSVT3E?si=pddV79Dpf-oNT9lU",
+      content1: "With your third trimester just around the corner, your baby bump may be looking especially photo-ready.",
+      content2: "A 'keepsake ultrasound' from a private clinic can give you a magical view of your baby, but many experts recommend against them.",
+      content3: "Your baby has started to inhale and exhale small amounts of amniotic fluid, which is essential for lung development.",
+      content4: "Your baby can hear your voice and may even respond to it with changes in their heartbeat, breathing, and movement.",
+      content5: "If you're having a boy, his testicles have begun to descend into his scrotum – a trip that will take about two to three months.",
+      images: ["img/pregnancy weeks/week_26.svg"],
+    },
+    {
+      week: 27,
+      title: "Weeks of Pregnancy",
+      color1:"#fff9b0",
+      color2:"#17a27b",
+      title1:"Taking naps",
+      title2:"Tattoos while pregnant",
+      title3:"Your baby is about the size of a cauliflower",
+      title4:"1-Vitamin B12 during pregnancy",
+      title5:"2-Opening their eyes",
+      title6:"3-Getting ready to breathe",
+      video: "https://www.youtube.com/embed/msQIrD_qB5A?si=O8OqYH0vsko9_hC1",
+      content1: "Naps are a wonderful way to get better sleep during pregnancy. Studies show more than half of pregnant women take a nap during the work week",
+      content2: "Hold off until you've given birth to get inked, since there isn't enough research",
+      content3: "Vitamin B12 is important for your baby's developing brain and spinal cord. Here are ways to have the recommended 2.6 micrograms of vitamin B12 during pregnancy each day.",
+      content4: "Your baby's eyes can now open and close! Your baby may move in response to light: If you shine a flashlight at your tummy, you might feel a burst of flutters and wiggles.",
+      content5: "Your baby's lungs are making surfactant. This liquid substance helps the alveoli (tiny air sacs in the lungs) remain open, which makes it possible for your baby to breathe after birth.",
+      images: ["img/pregnancy weeks/week_27.svg"],
+    },
+    {
+      week: 28,
+      title: "Weeks of Pregnancy",
+      color1:"#6c73ba",
+      color2:"#17a27b",
+      title1:"Pregnancy weight gain",
+      title2:"Your baby's brain",
+      title3:"Your baby is about the size of a large eggplant",
+      title4:"1-Your baby's senses",
+      title5:"2-Your baby's nervous system",
+      title6:"3-Braxton Hicks",
+      video: "https://www.youtube.com/embed/hsQhpLgNTVA?si=wbdsQyJjFjIdMWlI",
+      content1: "In the third trimester, aim for a steady weight gain of about a pound each week. You need about 450 extra calories per day to support your pregnancy",
+      content2: "Your baby's brain will triple in weight this trimester. The cerebrum will develop deep",
+      content3: "Your baby's senses of hearing, smell, and touch are developed and functional.",
+      content4: "At 28 weeks, your baby's autonomic nervous system (which controls involuntary movements) is taking on new tasks.",
+      content5: "Braxton Hicks contractions start early in pregnancy, but they may be just getting strong enough to notice now.",
+      images: ["img/pregnancy weeks/week_28.svg"],
+    },
+    {
+      week: 29,
+      title: "Weeks of Pregnancy",
+      color1:"#ffdc55",
+      color2:"#fc8e2c",
+      title1:"Feeling hiccups",
+      title2:"Nerve protection",
+      title3:"Your baby is about the size of a butternut squash",
+      title4:"1-Building bone strength",
+      title5:"2-Preparing to breathe",
+      title6:"3-Anemia",
+      video: "https://www.youtube.com/embed/23R7EumOSkk?si=0j6ZDKydkem0VeIl",
+      content1: "Noticing small, rhythmic movements? Your baby's hiccups in the womb are totally normal, and might play a role in lung maturation.",
+      content2: "A protective covering of myelin begins to form around your baby's nerves during this trimester, a process that will continue after your baby's born.",
+      content3: "Your baby's bones are soaking up lots of calcium as they harden, so be sure to drink your milk (or find another good source of calcium, such as cheese, yogurt, or enriched orange juice).",
+      content4: "Your baby's respiratory system is still developing. Their lungs are producing surfactant, a liquid that helps keep the alveoli open.",
+      content5: "Getting enough iron during pregnancy is important for many reasons. You need iron for your growing baby and placenta, and it's essential for making hemoglobin, the protein in red blood cells that carries oxygen to other cells.",
+      images: ["img/pregnancy weeks/week_29.svg"],
+    },
+    {
+      week: 30,
+      title: "Weeks of Pregnancy",
+      color1:"#a4ffde",
+      color2:"#195e55",
+      title1:"Fatigue",
+      title2:"Swelling",
+      title3:"Your baby is about the size of a large cabbage",
+      title4:"Get a prenatal massage",
+      title5:"Get vaccinated",
+      title6:"Research doulas",
+      video: "https://www.youtube.com/embed/CLwRP6E7CKI?si=6NwJJZ2QvkqoOOMm",
+      content1: "Fatigue can be a symptom of iron-deficiency anemia. (Your healthcare provider will test your blood for anemia, but let them know if you feel usually tired.)",
+      content2: "You can expect your ankles and feet to swell during pregnancy, especially as you near the end. Hormonal changes can add to swelling in pregnancy, plus your body naturally retains more fluids to support your pregnancy.",
+      content3: "Prenatal massage can be a wonderful way to relax and relieve those late-pregnancy aches. It can also help reduce swelling and even improve your mood.",
+      content4: "Vaccines help keep you safe from diseases and lower your risk of a bad outcome. During pregnancy, it's important to have the flu vaccine, the COVID-19 vaccine, the RSV vaccine, and a Tdap vaccine.",
+      content5: "Start talking to doulas if you'd like to hire one to help during labor and delivery or after you bring your baby home. A birth doula is a trained assistant who provides emotional and physical support during a baby's birth.",
+      images: ["img/pregnancy weeks/week_30.svg"],
+    },
+    {
+      week: 31,
+      title: "Weeks of Pregnancy",
+      color1:"#ba5a1a",
+      color2:"#f7d16e",
+      title1:"Healthy pregnancy recipes",
+      title2:"Chores to avoid",
+      title3:"Your baby is about the size of a coconut",
+      title4:"1-Fattening up",
+      title5:"2-Your baby's movements",
+      title6:"3-Your baby's brain",
+      video: "https://www.youtube.com/embed/hNwiQT5JHTo?si=ZVffjGiJ_qJ6GSIi",
+      content1: "Nourishing yourself and your baby is crucial during pregnancy, but it's not always easy.",
+      content2: "At 31 weeks, your nesting urge may be in full force, but it's important to avoid certain chores that can be unsafe – like moving furniture and using strong chemicals.",
+      content3: "Your baby's body is beginning to plump up as needed fat accumulates underneath their skin.",
+      content4: "Your baby can stretch, kick, and somersault – in fact, their dramatic motions may be keeping you up at night.",
+      content5: "Brain development kicks into high gear in the last trimester as your baby's brain triples in weight.",
+      images: ["img/pregnancy weeks/week_31.svg"],
+    },
+    {
+      week: 32,
+      title: "Weeks of Pregnancy",
+      color1:"#007662",
+      color2:"#d8d5b4",
+      title1:"Baby movement",
+      title2:"Able to survive and thrive",
+      title3:"Your baby is about the size of a jicama",
+      title4:"1-Storing minerals",
+      title5:"2-Your baby's lungs",
+      title6:"3-Your baby's genitalia",
+      video: "https://www.youtube.com/embed/GcKMnbJZkHQ?si=F00RPdfXEGjZu86d",
+      content1: "Keep monitoring your baby's kicks, and tell your doctor or midwife immediately if you notice a change.",
+      content2: "At 32 weeks, if you have your baby early their chances of doing well are very good. Called moderately preterm.",
+      content3: "Your baby's body is stashing away important minerals such as iron, calcium, and phosphorus.",
+      content4: "By next month, your baby's lungs will be fully formed. For now, your baby is practicing breathing by inhaling and exhaling amniotic fluid.",
+      content5: "If you're having a boy, his external genitalia is formed and his testicles have started descending to the scrotum. If you're having a girl, her uterus and ovaries are in place with all the eggs she'll have.",
+      images: ["img/pregnancy weeks/week_32.svg"],
+    },
+    {
+      week: 33,
+      title: "Weeks of Pregnancy",
+      color1:"#ebb01d",
+      color2:"#00955e",
+      title1:"Skull flexibility",
+      title2:"Baby movement",
+      title3:"Your baby is about the size of a pineapple",
+      title4:"Trouble sleeping",
+      title5:"Wrist pain",
+      title6:"Swollen labia",
+      video: "https://www.youtube.com/embed/Livx_3PYeUs?si=f3oY-4TnME8yJeaG",
+      content1: "The bones in your baby's skull aren't fused together, which allows them to move and slightly overlap. This makes it easier for your baby to fit through the birth canal ",
+      content2: "After your baby moves to a head-down position in preparation for birth, you may feel kicks in new places, like underneath your ribs on one side or the other.",
+      content3: "Finding an easy position to sit in – let alone sleep in – is becoming more of a challenge. Physical discomfort is one of the biggest reasons for poor sleep in late pregnancy. If you haven't already, finding a good pregnancy pillow could make it easier to settle in.",
+      content4: "It happens when the median nerve – a major nerve in the hand that travels through the wrist and arm – is squeezed or compressed.",
+      content5: "Swollen labia are a normal – if surprising – symptom during pregnancy. Instead, change positions frequently throughout the day. Take time off your feet, but get some gentle movement in, too.",
+      images: ["img/pregnancy weeks/week_33.svg"],
+    },
+    {
+      week: 34,
+      title: "Weeks of Pregnancy",
+      color1:"#fc8e2c",
+      color2:"#147f61",
+      title1:"Tired of pregnancy?",
+      title2:"Preparing for maternity leave",
+      title3:"Your baby is about the size of a cantaloupe",
+      title4:"1-Growing nails",
+      title5:"2-Chubby limbs",
+      title6:"3-Your baby's senses",
+      video: "https://www.youtube.com/embed/QeovM4PvTA0?si=mxTZfuAJk4CrFY0b",
+      content1: "If you're bored or tired of being pregnant, know that what you're feeling is completely normal.",
+      content2: "If you're working, sort out the details of your maternity leave. Talk to your company's HR department, fill out paperwork, and write a transition plan.",
+      content3: "At 34 weeks, your baby's fingernails have grown to the end of their fingertips. Their toenails will reach the tip of their toes at 38 weeks.",
+      content4: "Your baby is fattening up everywhere, and their arms and legs are starting to fill out beautifully.",
+      content5: "Your baby can respond to sounds, light, and touch. By next week, your baby's ears will be fully formed.",
+      images: ["img/pregnancy weeks/week_34.svg"],
+    },
+    {
+      week: 35,
+      title: "Weeks of Pregnancy",
+      color1:"#198470",
+      color2:"#b3e770",
+      title1:"Ready to drop",
+      title2:"Late-pregnancy dreams",
+      title3:"Your baby is about the size of a honeydew melon",
+      title4:"1-Amniotic fluid",
+      title5:"2-Poop and pee",
+      title6:"3-Sleep patterns",
+      video: "https://www.youtube.com/embed/h8gG-q08ppY?si=3CQ4teHhGXBiaXcS",
+      content1: "Soon your baby will drop into your pelvis, giving your lungs more room but putting more pressure on your bladder.",
+      content2: "Hormonal changes plus sleep disturbances can lead to vivid and bizarre dreams in late pregnancy.",
+      content3: "Your baby is cushioned and protected by about a quart of amniotic fluid. It increases during pregnancy until about 36 weeks, then gradually decreases until you give birth",
+      content4: "Your baby's first bowel movement (called meconium) is building up in their intestines.",
+      content5: "You'll probably feel your baby moving more when they're awake and less when they're asleep",
+      images: ["img/pregnancy weeks/week_35.svg"],
+    },
+    {
+      week: 36,
+      title: "Weeks of Pregnancy",
+      color1:"#056654",
+      color2:"#68deb7",
+      title1:"Dizziness",
+      title2:"Baby bones are hardening",
+      title3:"Your baby is about the size of a head of romaine lettuce",
+      title4:"Pack your hospital bag",
+      title5:"Know what to do when labor starts",
+      title6:"Make food for after your baby's born",
+      video: "https://www.youtube.com/embed/yrlifCziK0s?si=tUtNrS420OsdWRJL",
+      content1: "Dizziness during pregnancy is common due to cardiovascular changes. Your heart rate goes up, your heart pumps more blood per minute, and the amount of blood in your body increases by 30 to 50 percent.",
+      content2: "Your baby's bones are hardening, though they're still softer than an adult's. Some are made entirely of flexible cartilage that's gradually replaced by bone throughout childhood.",
+      content3: "Key things to pack in your hospital bag include your insurance card, toiletries, comfy clothing, a going-home outfit for your baby, a phone charger, and snacks for after labor.",
+      content4: "Be sure to review the signs of labor with your doctor or midwife. If they haven't yet, your provider should give you clear guidelines about when to call and when to head to the hospital or birth center.",
+      content5: "If you cook, start doubling recipes and freezing half. When your newborn is here, you'll love having home-cooked meals you can heat up fast.",
+      images: ["img/pregnancy weeks/week_36.svg"],
+    },
+    {
+      week: 37,
+      title: "Weeks of Pregnancy",
+      color1:"#852714",
+      color2:"#005d3c",
+      title1:"Your baby's eyes",
+      title2:"Your baby's hair",
+      title3:"Your baby is about the size of a bunch of Swiss chard",
+      title4:"1-Gas and bloating",
+      title5:"2-Lower back pain",
+      title6:"3-Do some nesting",
+      video: "https://www.youtube.com/embed/40ODtwRlkTM?si=sRepJHt8Eaiw2vd-",
+      content1: "You may not see your baby's true eye color at birth. Some babies are born with their final eye color",
+      content2: "Many babies have a full head of hair at birth, with locks from 1/2 inch to 1 1/2 inches long.",
+      content3: "Now that you're 37 weeks pregnant, your baby is crowding your stomach, intestines, and other organs. That can lead to a host of symptoms including gas, bloating, constipation, and indigestion.",
+      content4: "More than 60% of pregnant women have lower back pain. Especially at this point in pregnancy, it can be very painful – but there are many possible ways to get relief.",
+      content5: "If you're suddenly feeling an urge to dust all the baseboards, organize your books, or scrub the fridge, you may be nesting.",
+      images: ["img/pregnancy weeks/week_37.svg"],
+    },
+    {
+      week: 38,
+      title: "Weeks of Pregnancy",
+      color1:"#e4ff9a",
+      color2:"#17a27b",
+      title1:"Baby nails",
+      title2:"Looking good",
+      title3:"Your baby is about the size of a leek",
+      title4:"Watch for late-pregnancy complications",
+      title5:"Read up on baby feeding",
+      title6:"Have your house cleaned",
+      video: "https://www.youtube.com/embed/A3bjP-hKNAg?si=aUljWEnb7eczpC2g",
+      content1: "Your baby's fingernails and toenails are fully formed – toenails have reached the tips of your baby's toes, and their fingernails may extend beyond their fingertips.",
+      content2: "Your baby is ready for their first pictures: They have a nice layer of fat for smooth skin, they've shed most of their lanugo and they may have more hair on their head, too.",
+      content3: "Unfortunately, serious complications can strike at the end of pregnancy. Be on the lookout for symptoms that require you to call your doctor or midwife.",
+      content4: "Breastfeeding can be challenging, so talk to the experienced moms in your life about their best tips for breastfeeding successfully.",
+      content5: "There's nothing better than coming home to a clean house with your new baby! See what other parents wish they had known about preparing for a newborn.",
+      images: ["img/pregnancy weeks/week_38.svg"],
+    },
+    {
+      week: 39,
+      title: "Weeks of Pregnancy",
+      color1:"#56b646",
+      color2:"#c1133e",
+      title1:"Staying active",
+      title2:"Time to induce?",
+      title3:"Your baby is about the size of a mini-watermelon",
+      title4:"1-Still plumping up",
+      title5:"2-Ready to interact with you",
+      title6:"3-Baby kicks",
+      video: "https://www.youtube.com/embed/V9YtMxIACgE?si=Yo6hpsMrEMvffmtb",
+      content1: "Gentle exercise is okay now, as long as you don't have certain complications. Shoot for 20 minutes a day of walking, swimming, or stretching if you can.",
+      content2: "If you're having a healthy pregnancy, your provider may suggest inducing labor at 39 weeks.",
+      content3: "Your little one continues to build a layer of fat to help control their body temperature after birth. It's likely that your baby already measures about 20 inches and weighs just over 7 pounds.",
+      content4: "Your baby has a firm grasp, which you'll soon be able to test when you hold their hand for the first time!",
+      content5: "Keep paying attention to your baby's movements, and let your doctor or midwife know right away if they seem to decrease.",
+      images: ["img/pregnancy weeks/week_39.svg"],
+    },
+    {
+      week: 40,
+      title: "Weeks of Pregnancy",
+      color1:"#f63704",
+      color2:"#fc8e2c",
+      title1:"You made it!",
+      title2:"Staying positive",
+      title3:"Your baby is about the size of a small pumpkin",
+      title4:"1-How big will your baby be?",
+      title5:"2-Your baby's skin color",
+      title6:"3-Soft spots",
+      video: "https://www.youtube.com/embed/t7wSF1_8_Rg?si=Bu70e4C-SbbtcB92",
+      content1: "Congratulations – you made it to your due date! Your pregnancy is full term and your baby is fully developed and ready to meet you.",
+      content2: "If you're anxious about going through labor or having a C-section, or frustrated with being hugely pregnant, practice a few helpful pregnancy affirmations.",
+      content3: "It's hard to say for sure, but the average baby weight for newborns in the United States is between 7 and 8 pounds. The average length is about 20 inches.",
+      content4: "Babies of all ethnicities are born with reddish-purple skin that changes to pinkish-red in a day or so.",
+      content5: "Your baby's skull isn't one large bone, like an adult's. It starts out as separate bones joined by flexible tissue. After your baby is born, you'll be able to feel the soft spots between the bones, called fontanels, on the top and back of your newborn's head.",
+      images: ["img/pregnancy weeks/week_40.svg"],
+    },
+    {
+      week: 41,
+      title: "Weeks of Pregnancy",
+      color1:"#66f8d1",
+      color2:"#07996d",
+      title1:"Meeting your baby",
+      title2:"Sharing the news",
+      title3:"Almost there!",
+      title4:"1-Your overdue baby",
+      title5:"2-How big is your baby now?",
+      title6:"3-Anxiety",
+      video: "https://www.youtube.com/embed/OKnH12y1JAo?si=yPmMlKjCuvQ52RB_",
+      content1: "At long last, you'll soon meet your precious little one. Your baby may look a little funny at first",
+      content2: "Most new parents use social media or a text, but some get more creative.",
+      content3: "Your baby is 'late term' which means they've been camping out in your womb for a long time. They may be larger than the average baby.",
+      content4: "At 41 weeks, your baby's size is impressive. According to estimates, they'll weigh 8.35 pounds and be 20.39 inches long.",
+      content5: "It's hard not to be anxious when your due date comes and goes and you're still hugely pregnant. But fear not – you won't be pregnant forever.",
+      images: ["img/pregnancy weeks/week_41.svg"],
+    },
+  ];
+
+// Define route for the homepage
+app.get('/', (req, res) => {
+    res.render('home', { babyNames: babyNames });
+});
+
+// Dynamic route for articles based on week
+app.get('/week/:week', (req, res) => {
+    const { week } = req.params;
+    const article = articles.find(a => a.week === parseInt(week));
+  
+    if (article) {
+      res.render('pregnancy-article', { article });
+    } else {
+      res.status(404).send('Article not found');
+    }
+  });
+
+//main route for baby names
+app.get('/baby-names', (req, res) => {
+  const defaultLetter = babyNames[0]; 
+
+  res.render('baby-names', { 
+    babyNames: babyNames,
+    currentLetter: defaultLetter.letter,
+    currentNames: {
+      boys: defaultLetter.boys,
+      girls: defaultLetter.girls
+    }
+  });
+});
+
+// Route for specific letter
+app.get('/baby-names/:letter', (req, res) => {
+  const requestedLetter = req.params.letter.toUpperCase();
+  const letterData = babyNames.find(item => item.letter === requestedLetter);
+  
+  if (letterData) {
+    res.render('baby-names', { 
+      babyNames: babyNames,
+      currentLetter: letterData.letter,
+      currentNames: {
+        boys: letterData.boys,
+        girls: letterData.girls
+      }
+    });
+  } else {
+    // If letter not found, redirect to main page
+    res.redirect('/baby-names');
+  }
+});
+
+// Serve static files from the ai-model directory
+app.use('/ai-model', express.static(path.join(__dirname, 'ai-model')));
+
+// Or if you prefer route handlers:
+app.get('/ai-model', (req, res) => {
+  res.sendFile(path.join(__dirname, 'ai-model', 'index.html'));
+});
+
+app.use('/disease-pages', express.static(path.join(__dirname, 'disease')));
+
+app.get('/disease-pages', (req, res) => {
+  res.sendFile(path.join(__dirname, 'disease', 'index.html'));
+});
+
+
+// Serve static files from the login directory
+app.use('/login', express.static(path.join(__dirname, 'login')));
+
+// Or if you prefer a route handler:
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'login', 'index.html'));
+});
+
+app.use('/profile', express.static(path.join(__dirname, 'profile page')));
+
+// Add these specific routes for profile page assets
+app.get('/profile/style.css', (req, res) => {
+    res.setHeader('Content-Type', 'text/css');
+    res.sendFile(path.join(__dirname, 'profile page', 'style.css'));
+});
+
+app.get('/profile/script.js', (req, res) => {
+    res.setHeader('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'profile page', 'script.js'));
+});
+
+// Update the profile route to use sendFile with absolute path
+app.get('/profile', (req, res) => {
+    res.sendFile(path.join(__dirname, 'profile page', 'index.html'));
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
