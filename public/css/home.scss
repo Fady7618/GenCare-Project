@@ -449,7 +449,7 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
     button{
         background-color: $primary;
         border-radius: 20px;
-        width: 5rem;
+        // width: 5rem;
         @include roboto-bold();
     }
     .col-md-8 {
@@ -534,6 +534,7 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
     }
 }
 #footer{
+    max-height: 70vh;
     background-color: $primary;
     @include raleway-bold();
     .blop-15{
@@ -544,14 +545,15 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
         animation: ftrblp 4s cubic-bezier(.4,0,.66,.99) infinite forwards alternate;
     }
     .blop-16{
-        background: url("../img/Quantum\ brain\ wave!.gif");
-        @include blop(250px, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
+        background: url("../img/iOs\ Application-Icon-unscreen.gif");
+        @include blop(12em, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
         z-index: 1;
     }
     .blop-17{
-        background: url("../img/iOs\ Application-Icon-unscreen.gif");
-        @include blop(250px, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
+        background: url("../img/Logo/Mob-Logo-removebg-preview.png");
+        @include blop(11rem, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
         z-index: 1;
+        aspect-ratio: 16/9 !important
     }
     h2{
         @include roboto-bold();

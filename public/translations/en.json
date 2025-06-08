@@ -35,7 +35,7 @@
     "uploadImage": "upload image",
     "aiResult": "Ai result",
     "info": "information about \nAI model and \nits accuracy",
-    "test": "test"
+    "test": "Download the app"
   },
   "articles": {
     "title": "fetal's brain disease",
@@ -71,6 +71,9 @@
       "title": "support",
       "email": "email:example@gmail.com",
       "phone": "phone num: +20 12345678910"
+    },
+    "app": {
+      "title": "Download the app"
     }
   },
   "article": {
