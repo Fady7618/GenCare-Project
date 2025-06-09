@@ -570,12 +570,14 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
 }
 .notification-dropdown {
   min-width: 320px;
+  color: $primary;
   background: #fff;
+  border: 2px solid $primary;
   border-radius: 12px;
   position: absolute;
   top: 120%;
   right: 0;
-  z-index: 2000; // Bootstrap modal z-index is 1050, so this is above everything
+//   z-index: 2000; // Bootstrap modal z-index is 1050, so this is above everything
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   font-size: 1rem;
   transition: max-height 0.3s cubic-bezier(.4,0,.2,1), opacity 0.3s;
