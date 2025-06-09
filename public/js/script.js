@@ -104,3 +104,9 @@ document.addEventListener('click', function(event) {
     dropdown.classList.remove('show');
   }
 });
+
+function clearNotifications() {
+  const notifList = document.getElementById('notificationList');
+  notifList.innerHTML = `<li class="px-3 py-2 text-center text-muted">No notifications</li>`;
+  document.getElementById('notifCount').style.display = 'none';
+}

@@ -735,6 +735,11 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] button:nth-of-type(2):hover {
   pointer-events: auto;
 }
 
+#notifCount {
+  background-color: #4f2fa2 !important;
+  color: white !important;
+}
+
 #notificationBell {
   color: #4f2fa2;
 }
