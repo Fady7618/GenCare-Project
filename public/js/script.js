@@ -89,3 +89,18 @@ mediaQuery.addEventListener("change", modifyAttributes);
 
 // Initial check
 modifyAttributes(mediaQuery);
+
+function toggleNotifications(event) {
+  event.preventDefault();
+  const dropdown = document.getElementById('notificationDropdown');
+  dropdown.classList.toggle('show');
+}
+
+// Hide notification dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  const bell = document.getElementById('notificationBell');
+  const dropdown = document.getElementById('notificationDropdown');
+  if (!bell.contains(event.target) && !dropdown.contains(event.target)) {
+    dropdown.classList.remove('show');
+  }
+});
