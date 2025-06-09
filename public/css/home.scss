@@ -596,6 +596,7 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
 }
 #notificationBell{
     color: $primary;
+    border-color:$primary !important
 }
 @media (max-width: 576px) {
   .notification-dropdown {

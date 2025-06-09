@@ -105,8 +105,28 @@ document.addEventListener('click', function(event) {
   }
 });
 
+function updateNotificationCount() {
+  const notificationList = document.getElementById('notificationList');
+  const notifCount = document.getElementById('notifCount');
+  const notifications = notificationList.getElementsByTagName('li');
+  // Don't count items with the text-muted class (empty state message)
+  const count = Array.from(notifications).filter(item => !item.classList.contains('text-muted')).length;
+  
+  if (count > 0) {
+    notifCount.textContent = count;
+    notifCount.style.display = 'block';
+  } else {
+    notifCount.style.display = 'none';
+  }
+}
+
 function clearNotifications() {
   const notifList = document.getElementById('notificationList');
   notifList.innerHTML = `<li class="px-3 py-2 text-center text-muted">No notifications</li>`;
-  document.getElementById('notifCount').style.display = 'none';
+  updateNotificationCount();
 }
+
+// Call this when the DOM is loaded to set initial count
+document.addEventListener('DOMContentLoaded', function() {
+  updateNotificationCount();
+});

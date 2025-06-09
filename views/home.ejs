@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GenCare</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/animate.min.css">
     <link rel="stylesheet" href="/css/home.css">
-    
-    
+    <link rel="shortcut icon" href="img/Logo/logo.ico" type="image/x-icon">
 </head>
 <body>
     <div class="container-lg">
@@ -45,15 +44,17 @@
                   </button>
 
                   <div class="nav-item mx-1 text-center position-relative">
-                    <a class="nav-link border border-1 rounded" href="#" id="notificationBell" onclick="toggleNotifications(event)">
+                    <a class="nav-link border border-2 rounded" href="#" id="notificationBell" onclick="toggleNotifications(event)">
                       <i class="fa-solid fa-envelope"></i>
-                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="notifCount">2</span>
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="notifCount"></span>
                     </a>
                     <!-- Notification Dropdown -->
                     <div id="notificationDropdown" class="notification-dropdown shadow-lg">
                       <div class="notification-header px-3 py-2 border-bottom d-flex justify-content-between align-items-center">
                         <strong>Notifications</strong>
-                        <button class="btn btn-sm btn-link text-danger p-0" id="clearNotificationsBtn" onclick="clearNotifications()" style="font-size: 0.95rem;">Clear All</button>
+                        <button class="btn btn-sm btn-link p-1 text-danger p-0" id="clearNotificationsBtn" onclick="clearNotifications()" style="font-size: 0.95rem;">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
                       </div>
                       <ul class="list-unstyled mb-0" id="notificationList">
                         <li class="px-3 py-2 border-bottom">
@@ -360,18 +361,21 @@
 
         <div class="col-md-5">
           <h2 class="text-center opacity-0" data-i18n="articles.title">fetal's brain disease</h2>
-          <div class="row">
-            <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
-              <h3 class="card-title m-0" data-i18n="articles.arachnoidCyst.title">Arachnoid Cyst</h3>
-              <p class="card-body p-0 m-0" data-i18n="articles.arachnoidCyst.description">This is some text within a card body.</p>
+          <div class="row d-flex justify-content-center d-md-inline-block">
+
+            <div class="opacity-0 col-10 col-md-10 card ps-2 py-3 my-1 my-md-4 border-0 border-start border-5 bg-transparent">
+              <h3 class="card-title m-0" data-i18n="articles.arachnoidCyst.title"></h3>
+              <p class="card-body p-0 m-0" data-i18n="articles.arachnoidCyst.description"></p>
             </div>
-            <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
-              <h3 class="card-title m-0" data-i18n="articles.cerebellarHypoplasia.title">Cerebellar Hypoplasia</h3>
-              <p class="card-body p-0 m-0" data-i18n="articles.cerebellarHypoplasia.description">This is some text within a card body.</p>
+            
+            <div class="opacity-0 col-10 col-md-10 card ps-2 py-3 my-1 my-md-4 border-0 border-start border-5 bg-transparent">
+              <h3 class="card-title m-0" data-i18n="articles.cerebellarHypoplasia.title"></h3>
+              <p class="card-body p-0 m-0" data-i18n="articles.cerebellarHypoplasia.description"></p>
             </div>
-            <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
-              <h3 class="card-title m-0" data-i18n="articles.colphocephaly.title">Colphocephaly</h3>
-              <p class="card-body p-0 m-0" data-i18n="articles.colphocephaly.description">This is some text within a card body.</p>
+            
+            <div class="opacity-0 col-10 col-md-10 card ps-2 py-3 my-1 my-md-4 border-0 border-start border-5 bg-transparent">
+              <h3 class="card-title m-0" data-i18n="articles.colphocephaly.title"></h3>
+              <p class="card-body p-0 m-0" data-i18n="articles.colphocephaly.description"></p>
             </div>
           </div>
 
