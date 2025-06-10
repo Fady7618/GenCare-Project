@@ -43,13 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     langToggle.querySelector('.toggle-lang').textContent = 'English';
   }
-  
-  // Initialize dark mode from localStorage if available
-  const isDarkMode = localStorage.getItem('darkMode') === 'true';
-  if (isDarkMode) {
-    document.body.classList.add('dark-mode');
-    darkModeToggle.innerHTML='<span class="toggle-on"><i class="fa-solid fa-lightbulb"></i></span>';
-  }
 
   const diseases = [
       {
@@ -618,22 +611,6 @@ function displayDiseaseDetails(index) {
 
 
 
-// Dark mode toggle functionality
-const darkModeToggle = document.getElementById('darkModeToggle');
-
-darkModeToggle.addEventListener('click', () => {
-  const isDarkMode = document.body.classList.contains('dark-mode');
-  if (isDarkMode) {
-    document.body.classList.remove('dark-mode');
-    darkModeToggle.innerHTML='<span class="toggle-off"><i class="fa-regular fa-lightbulb"></i></span>';
-    localStorage.setItem('darkMode', 'false');
-  } else {
-    document.body.classList.add('dark-mode');
-    darkModeToggle.innerHTML='<span class="toggle-on"><i class="fa-solid fa-lightbulb"></i></span>';
-    localStorage.setItem('darkMode', 'true');
-  }
-});
-
 // Language toggle functionality
 const langToggle = document.getElementById('langToggle');
 let isArabic = false;
@@ -734,10 +711,19 @@ langToggle.addEventListener('click', () => {
   isArabic = !isArabic;
   // Store language preference in localStorage
   localStorage.setItem('isArabic', isArabic);
+  
   // Update language without page refresh
   updateLanguage();
+  
   // Regenerate cards with the new language
   generateCards();
+  
   // Reinitialize click event listeners for card buttons
   initCardButtonListeners();
+  
+  // Fix: Force redraw of all elements by toggling a class briefly
+  document.body.classList.add('language-transition');
+  setTimeout(() => {
+    document.body.classList.remove('language-transition');
+  }, 50);
 });

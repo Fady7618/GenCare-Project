@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
-const articles = require('./data/articles.js');
+const articles = require('./data/weeksArticles.js');
 const babyNames = require('./data/babynames.js');
+const diseases = require('./data/diseaseArticles.js'); // Add this line
 
 // Create Express app
 const app = express();
@@ -21,7 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Define route for the homepage
 app.get('/', (req, res) => {
-    res.render('home', { babyNames: babyNames });
+    res.render('home', { babyNames: babyNames, diseases: diseases }); // Updated to pass diseases data
 });
 
 // Dynamic route for articles based on week
@@ -35,6 +36,18 @@ app.get('/week/:week', (req, res) => {
       res.status(404).send('Article not found');
     }
   });
+
+// Dynamic route for disease pages
+app.get('/disease/:id', (req, res) => {
+  const { id } = req.params;
+  const disease = diseases[id] || diseases[0];
+  
+  if (disease) {
+    res.render('disease-article', { disease, diseases }); 
+  } else {
+    res.status(404).send('Disease information not found');
+  }
+});
 
 //main route for baby names
 app.get('/baby-names', (req, res) => {
