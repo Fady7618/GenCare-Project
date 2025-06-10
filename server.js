@@ -70,9 +70,19 @@ app.get('/baby-names/:letter', (req, res) => {
   }
 });
 
+// Route for the AI model landing page
+app.get('/ai-model', (req, res) => {
+    res.sendFile(path.join(__dirname, 'ai-model', 'landing.html'));
+});
+
 // Serve static files from the ai-model directory
 app.use('/ai-model', express.static(path.join(__dirname, 'ai-model')));
 
+
+// Route for the AI model main page
+app.get('/ai-model/index.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'ai-model', 'index.html'));
+});
 
 app.use('/disease-pages', express.static(path.join(__dirname, 'disease')));
 
@@ -88,6 +98,8 @@ app.use('/login', express.static(path.join(__dirname, 'login')));
 app.get('/profile', (req, res) => {
   res.sendFile(path.join(__dirname, 'profile page', 'landing.html'));
 });
+
+
 
 // Add these specific routes for profile page assets
 app.get('/profile/style.css', (req, res) => {
