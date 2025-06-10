@@ -86,10 +86,6 @@ app.get('/ai-model/index.html', (req, res) => {
 
 app.use('/disease-pages', express.static(path.join(__dirname, 'disease')));
 
-app.get('/disease-pages', (req, res) => {
-  res.sendFile(path.join(__dirname, 'disease', 'index.html'));
-});
-
 
 // Serve static files from the login directory
 app.use('/login', express.static(path.join(__dirname, 'login')));
@@ -99,18 +95,7 @@ app.get('/profile', (req, res) => {
   res.sendFile(path.join(__dirname, 'profile page', 'landing.html'));
 });
 
-
-
-// Add these specific routes for profile page assets
-app.get('/profile/style.css', (req, res) => {
-    res.setHeader('Content-Type', 'text/css');
-    res.sendFile(path.join(__dirname, 'profile page', 'style.css'));
-});
-
-app.get('/profile/script.js', (req, res) => {
-    res.setHeader('Content-Type', 'application/javascript');
-    res.sendFile(path.join(__dirname, 'profile page', 'script.js'));
-});
+app.use('/profile', express.static(path.join(__dirname, 'profile page')));
 
 app.get('/profile/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'profile page', 'index.html'));
