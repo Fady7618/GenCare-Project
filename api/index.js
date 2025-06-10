@@ -99,5 +99,11 @@ app.get('/profile/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../profile page', 'index.html'));
 });
 
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Global error:', err);
+  res.status(500).send('Internal Server Error');
+});
+
 // Export as serverless function for Vercel
 module.exports = serverless(app);
