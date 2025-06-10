@@ -156,6 +156,45 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] button:nth-of-type(2):hover {
   color: #4f2fa2;
 }
 
+.notification-dropdown {
+  min-width: 320px;
+  color: #4f2fa2;
+  background: #fff;
+  border: 2px solid #4f2fa2;
+  border-radius: 12px;
+  position: absolute;
+  top: 120%;
+  right: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  font-size: 1rem;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.notification-dropdown.show {
+  max-height: 500px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.noti {
+  width: 2.3em;
+  height: 2.3em;
+}
+
+#notifCount {
+  background-color: #4f2fa2 !important;
+  color: white !important;
+}
+
+#notificationBell {
+  color: #4f2fa2;
+  border-color: #4f2fa2 !important;
+}
+
 .slider #carouselExample .carousel-item .card {
   background: transparent;
   border: none;
@@ -714,40 +753,6 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] button:nth-of-type(2):hover {
 }
 #footer ::placeholder {
   color: #4f2fa2;
-}
-
-.notification-dropdown {
-  min-width: 320px;
-  color: #4f2fa2;
-  background: #fff;
-  border: 2px solid #4f2fa2;
-  border-radius: 12px;
-  position: absolute;
-  top: 120%;
-  right: 0;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  font-size: 1rem;
-  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.notification-dropdown.show {
-  max-height: 500px;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-#notifCount {
-  background-color: #4f2fa2 !important;
-  color: white !important;
-}
-
-#notificationBell {
-  color: #4f2fa2;
-  border-color: #4f2fa2 !important;
 }
 
 @media (max-width: 576px) {

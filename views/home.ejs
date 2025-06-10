@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/animate.min.css">
     <link rel="stylesheet" href="/css/home.css">
-    <link rel="shortcut icon" href="img/Logo/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/Logo/logo.ico" type="image/x-icon">
 </head>
 <body>
     <div class="container-lg">
@@ -43,12 +43,7 @@
                     <a href="/login" class="text-decoration-none text-dark" data-i18n="nav.login">log in</a>
                   </button> -->
 
-                  <div class="nav-item mx-1 text-center position-relative ">
-                    <a class="nav-link border border-2 rounded" href="#" id="notificationBell" onclick="toggleNotifications(event)">
-                      <i class="fa-solid fa-envelope"></i>
-                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="notifCount"></span>
-                    </a>
-                  </div>
+                  
                   <!-- Notification Dropdown -->
                   <div id="notificationDropdown" class="notification-dropdown shadow-lg">
                     <div class="notification-header px-3 py-2 border-bottom d-flex justify-content-between align-items-center">
@@ -84,6 +79,13 @@
                     </select>
                   </li>
                 </ul>
+              </div>
+
+              <div class="nav-item mx-1 text-center position-relative align-self-center d-none d-lg-flex noti">
+                  <a class="nav-link border border-2 rounded w-100 h-100 d-flex justify-content-center align-items-center" href="#" id="notificationBell" onclick="toggleNotifications(event)">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="notifCount"></span>
+                  </a>
               </div>
             </div>
         </nav>
@@ -343,7 +345,7 @@
           </div>
         </div>
       </div>
-      <button class="btn align-self-center text-center">
+      <button class="btn align-self-center text-center mt-3">
         <a href="#footer" class="text-decoration-none text-white " data-i18n="aiModel.test"></a>
       </button>
     </div>

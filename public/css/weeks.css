@@ -156,6 +156,42 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] button:nth-of-type(2):hover {
   color: #4f2fa2;
 }
 
+.notification-dropdown {
+  min-width: 320px;
+  color: #4f2fa2;
+  background: #fff;
+  border: 2px solid #4f2fa2;
+  border-radius: 12px;
+  position: absolute;
+  top: 120%;
+  right: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  font-size: 1rem;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.notification-dropdown.show {
+  max-height: 500px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#notifCount {
+  background-color: #4f2fa2 !important;
+  color: white !important;
+}
+
+#notificationBell {
+  width: 2rem;
+  height: 2rem;
+  color: #4f2fa2;
+  border-color: #4f2fa2 !important;
+}
+
 .slider #carouselExample .carousel-item .card {
   background: transparent;
   border: none;
@@ -646,7 +682,7 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] button:nth-of-type(2):hover {
 }
 #footer .blop-15 {
   width: 23%;
-  top: -50%;
+  top: -55%;
   right: 50%;
   bottom: none;
   left: none;
@@ -689,6 +725,11 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] button:nth-of-type(2):hover {
   z-index: 1;
   aspect-ratio: 16/9 !important;
 }
+#footer img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 #footer h2 {
   font-family: "Roboto Condensed", sans-serif;
   font-optical-sizing: auto;
@@ -711,6 +752,13 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] button:nth-of-type(2):hover {
   color: #4f2fa2;
 }
 
+@media (max-width: 576px) {
+  .notification-dropdown {
+    min-width: 220px;
+    font-size: 0.95rem;
+    right: -40px;
+  }
+}
 @media screen and (max-width: 991px) {
   #slider h1 {
     font-size: 1.3rem;

@@ -213,6 +213,40 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
         }
     }
 }
+.notification-dropdown {
+    min-width: 320px;
+    color: $primary;
+    background: #fff;
+    border: 2px solid $primary;
+    border-radius: 12px;
+    position: absolute;
+    top: 120%;
+    right: 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    font-size: 1rem;
+    transition: max-height 0.3s cubic-bezier(.4,0,.2,1), opacity 0.3s;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .notification-dropdown.show {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .noti{
+    width: 2.3em;
+    height: 2.3em;
+  }
+  #notifCount{
+      background-color: $primary !important;
+      color: white !important;
+  }
+  #notificationBell{
+    color: $primary;
+    border-color:$primary !important
+  }
 .slider{
     #carouselExample{
         .carousel-item{
@@ -573,42 +607,14 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
         color: $primary;
     }
 }
-.notification-dropdown {
-  min-width: 320px;
-  color: $primary;
-  background: #fff;
-  border: 2px solid $primary;
-  border-radius: 12px;
-  position: absolute;
-  top: 120%;
-  right: 0;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  font-size: 1rem;
-  transition: max-height 0.3s cubic-bezier(.4,0,.2,1), opacity 0.3s;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.notification-dropdown.show {
-  max-height: 500px;
-  opacity: 1;
-  pointer-events: auto;
-}
-#notifCount{
-    background-color: $primary !important;
-    color: white !important;
-}
-#notificationBell{
-    color: $primary;
-    border-color:$primary !important
-}
+
 @media (max-width: 576px) {
   .notification-dropdown {
     min-width: 220px;
     font-size: 0.95rem;
     right: -40px;
   }
+  
 }
 @media screen and (max-width:991px) {
     #slider{
