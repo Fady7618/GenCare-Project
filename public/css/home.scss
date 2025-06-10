@@ -538,7 +538,7 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
     background-color: $primary;
     @include raleway-bold();
     .blop-15{
-        @include blop(23%, -50%, 50%, none, none, 67% 33% 46% 54% / 46% 50% 50% 54% );
+        @include blop(23%, -55%, 50%, none, none, 67% 33% 46% 54% / 46% 50% 50% 54% );
         background: white;
         position: absolute;
         translate: 50% 0;
@@ -554,6 +554,11 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
         @include blop(11rem, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
         z-index: 1;
         aspect-ratio: 16/9 !important
+    }
+    img{
+        width: 100%;
+        // height: auto;
+        object-fit: cover;
     }
     h2{
         @include roboto-bold();

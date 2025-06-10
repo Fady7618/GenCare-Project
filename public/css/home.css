@@ -646,7 +646,7 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] button:nth-of-type(2):hover {
 }
 #footer .blop-15 {
   width: 23%;
-  top: -50%;
+  top: -55%;
   right: 50%;
   bottom: none;
   left: none;
@@ -688,6 +688,11 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] button:nth-of-type(2):hover {
   aspect-ratio: 1/1;
   z-index: 1;
   aspect-ratio: 16/9 !important;
+}
+#footer img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #footer h2 {
   font-family: "Roboto Condensed", sans-serif;
