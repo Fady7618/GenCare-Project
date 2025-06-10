@@ -2,9 +2,6 @@
 node_modules/
 GenCare_backend/node_modules/
 
-# Images
-public/img/
-
 
 # Logs
 logs
