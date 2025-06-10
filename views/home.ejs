@@ -39,38 +39,38 @@
                   <li class="nav-item mx-1 text-center">
                     <a class="nav-link" onclick="handleClick(this)" href="#aiModel" data-i18n="nav.aiTest">AI test</a>
                   </li>
-                  <button class="btn mb-2 mb-lg-0">
+                  <!-- <button class="btn mb-2 mb-lg-0">
                     <a href="/login" class="text-decoration-none text-dark" data-i18n="nav.login">log in</a>
-                  </button>
+                  </button> -->
 
-                  <div class="nav-item mx-1 text-center position-relative">
+                  <div class="nav-item mx-1 text-center position-relative ">
                     <a class="nav-link border border-2 rounded" href="#" id="notificationBell" onclick="toggleNotifications(event)">
                       <i class="fa-solid fa-envelope"></i>
                       <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="notifCount"></span>
                     </a>
-                    <!-- Notification Dropdown -->
-                    <div id="notificationDropdown" class="notification-dropdown shadow-lg">
-                      <div class="notification-header px-3 py-2 border-bottom d-flex justify-content-between align-items-center">
-                        <strong>Notifications</strong>
-                        <button class="btn btn-sm btn-link p-1 text-danger p-0" id="clearNotificationsBtn" onclick="clearNotifications()" style="font-size: 0.95rem;">
-                          <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                      </div>
-                      <ul class="list-unstyled mb-0" id="notificationList">
-                        <li class="px-3 py-2 border-bottom">
-                          <i class="fa-solid fa-circle-info text-primary me-2"></i>
-                          <span>New article on fetal health is available!</span>
-                        </li>
-                        <li class="px-3 py-2 border-bottom">
-                          <i class="fa-solid fa-baby text-success me-2"></i>
-                          <span>Check out the updated baby names list.</span>
-                        </li>
-                        <li class="px-3 py-2">
-                          <i class="fa-solid fa-robot text-warning me-2"></i>
-                          <span>AI test feature improved for better accuracy.</span>
-                        </li>
-                      </ul>
+                  </div>
+                  <!-- Notification Dropdown -->
+                  <div id="notificationDropdown" class="notification-dropdown shadow-lg">
+                    <div class="notification-header px-3 py-2 border-bottom d-flex justify-content-between align-items-center">
+                      <strong>Notifications</strong>
+                      <button class="btn btn-sm btn-link p-1 text-danger p-0" id="clearNotificationsBtn" onclick="clearNotifications()" style="font-size: 0.95rem;">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
                     </div>
+                    <ul class="list-unstyled mb-0" id="notificationList">
+                      <li class="px-3 py-2 border-bottom">
+                        <i class="fa-solid fa-circle-info text-primary me-2"></i>
+                        <span>New article on fetal health is available!</span>
+                      </li>
+                      <li class="px-3 py-2 border-bottom">
+                        <i class="fa-solid fa-baby text-success me-2"></i>
+                        <span>Check out the updated baby names list.</span>
+                      </li>
+                      <li class="px-3 py-2">
+                        <i class="fa-solid fa-robot text-warning me-2"></i>
+                        <span>AI test feature improved for better accuracy.</span>
+                      </li>
+                    </ul>
                   </div>
 
 
@@ -145,13 +145,14 @@
                     </div>
                   </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <button class="carousel-control-prev h-25 align-self-center" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                   <span aria-hidden="true">
                     <i class="fa-solid fa-angle-left" style="color: #000000;"></i>
                   </span>
                   <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+
+                <button class="carousel-control-next h-25 align-self-center" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                   <span aria-hidden="true">
                     <i class="fa-solid fa-angle-right" style="color: #000000;"></i>
                   </span>

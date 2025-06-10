@@ -41,11 +41,11 @@
     "title": "fetal's brain disease",
     "arachnoidCyst": {
       "title": "Arachnoid Cyst",
-      "description": "is a fluid-filled sac that usually forms in the brain or spinal cord, within the arachnoid membrane surrounding the central nervous system."
+      "description": "is a fluid-filled sac that usually forms in the brain or spinal cord."
     },
     "cerebellarHypoplasia": {
       "title": "Cerebellar Hypoplasia",
-      "description": "is a condition where the cerebellum (the part of the brain responsible for coordination, balance, and motor control) does not develop properly."
+      "description": "is a condition where the cerebellum does not develop properly."
     },
     "colphocephaly": {
       "title": "Colphocephaly",

@@ -84,12 +84,10 @@ app.get('/disease-pages', (req, res) => {
 // Serve static files from the login directory
 app.use('/login', express.static(path.join(__dirname, 'login')));
 
-// Or if you prefer a route handler:
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login', 'index.html'));
-});
 
-app.use('/profile', express.static(path.join(__dirname, 'profile page')));
+app.get('/profile', (req, res) => {
+  res.sendFile(path.join(__dirname, 'profile page', 'landing.html'));
+});
 
 // Add these specific routes for profile page assets
 app.get('/profile/style.css', (req, res) => {
@@ -102,8 +100,7 @@ app.get('/profile/script.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'profile page', 'script.js'));
 });
 
-// Update the profile route to use sendFile with absolute path
-app.get('/profile', (req, res) => {
+app.get('/profile/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'profile page', 'index.html'));
 });
 
