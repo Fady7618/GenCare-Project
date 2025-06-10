@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../views'));
 
-// Routes (copy all your routes here)
+// Routes
 app.get('/', (req, res) => {
     res.render('home', { babyNames: babyNames });
 });
@@ -78,5 +78,5 @@ app.get('/profile/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../profile page', 'index.html'));
 });
 
-// Export as serverless function
+// Export as serverless function for Vercel
 module.exports = serverless(app);
