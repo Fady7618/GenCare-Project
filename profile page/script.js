@@ -1,13 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if user is logged in
-    const token = localStorage.getItem('token');
-    const userData = JSON.parse(localStorage.getItem('userData'));
+    // Remove authentication check and keep only the core functionality
     
-    if (!token || !userData) {
-        window.location.href = '/login/index.html';
-        return;
-    }
-
     // Get DOM elements
     const editButton = document.getElementById('editButton');
     const editModal = document.getElementById('editModal');
@@ -23,8 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputBloodType = document.getElementById('inputBloodType');
     const inputPregnancyTime = document.getElementById('inputPregnancyTime');
     const pregnancyTimeUnit = document.getElementById('pregnancyTimeUnit');
-    const pregnancyError = document.getElementById('pregnancyError');
-
+    
     // Display elements
     const displayFullName = document.getElementById('displayFullName');
     const displayAge = document.getElementById('displayAge');
@@ -37,17 +29,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const resetButton = document.getElementById('resetButton');
     const form = document.getElementById('editProfileForm');
 
-    // Initialize profile with user data
-    const profileData = {
-        fullName: userData.name || '',
-        age: userData.age || '',
-        phone: userData.phone || '',
-        bloodType: userData.bloodType || '',
-        pregnancyTime: userData.pregnancyTime || '',
-        pregnancyTimeUnit: userData.pregnancyTimeUnit || 'weeks'
+    // Initialize with default data
+    const defaultData = {
+        fullName: '-',
+        age: '-',
+        phone: '-',
+        bloodType: '-',
+        pregnancyTime: '0',
+        pregnancyTimeUnit: 'weeks'
     };
 
-    updateDisplayView(profileData);
+    updateDisplayView(defaultData);
 
     // Health form inputs
     const inputBloodPressure = document.getElementById('inputBloodPressure');
@@ -272,26 +264,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // Update reset functionality
+    // Initialize modal
+    const confirmProfileResetModal = new bootstrap.Modal(document.getElementById('confirmProfileResetModal'));
+    const confirmResetProfileBtn = document.getElementById('confirmProfileResetBtn');
+
+    // Show modal on reset button click
     resetButton.addEventListener('click', function() {
-        if (confirm('Are you sure you want to reset all profile data?')) {
-            // Clear localStorage
-            localStorage.removeItem('profileData');
+        confirmProfileResetModal.show();
+    });
 
-            // Reset display values
-            const defaultData = {
-                fullName: '-',
-                age: '-',
-                phone: '-',
-                bloodType: '-',
-                pregnancyTime: '0',
-                pregnancyTimeUnit: 'weeks'
-            };
-            updateDisplayView(defaultData);
+    // Handle confirm reset
+    confirmResetProfileBtn.addEventListener('click', function() {
+        // Clear localStorage
+        localStorage.removeItem('profileData');
 
-            // Show success message
-            showSuccessMessage();
-        }
+        // Reset display values
+        const defaultData = {
+            fullName: '-',
+            age: '-',
+            phone: '-',
+            bloodType: '-',
+            pregnancyTime: '0',
+            pregnancyTimeUnit: 'weeks'
+        };
+        updateDisplayView(defaultData);
+
+        // Close modal
+        confirmProfileResetModal.hide();
+
+        // Show success message
+        showSuccessMessage();
     });
 
     // Update loadProfileData function
@@ -553,4 +555,3 @@ function analyzeHealthRisks(healthData) {
         { condition: 'Obesity', riskLevel: 'High', recommendation: 'Consult a healthcare provider for weight management' }
     ]);
 }
- 

@@ -247,6 +247,7 @@ header {
     margin: 50px auto;
     border-radius: 15px;
     overflow: hidden;
+    border: none;
 }
 
 .modal-header {
@@ -256,6 +257,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #dee2e6;
 }
 
 .close-btn {
@@ -267,7 +269,7 @@ header {
 }
 
 .modal-body {
-    padding: 20px;
+    padding: 1.5rem;
 }
 
 .form-group {
@@ -291,8 +293,8 @@ header {
 }
 
 .modal-footer {
-    padding: 15px 20px;
-    border-top: 1px solid #eee;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #dee2e6;
     display: flex;
     justify-content: flex-end;
     gap: 10px;
@@ -588,4 +590,41 @@ header {
 .form-control.is-invalid {
     border-color: #dc3545;
     margin-bottom: 0.25rem;
+}
+
+/* Add these styles to your existing CSS */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem 1.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+    padding: 1rem 1.5rem;
+}
+
+#confirmProfileResetModal .modal-body p {
+    font-size: 1.1rem;
+    text-align: center;
+    margin: 0;
+    color: #6c757d;
+}
+
+#confirmProfileResetModal .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+#confirmProfileResetModal .btn-danger:hover {
+    background-color: #bb2d3b;
+    border-color: #b02a37;
 }
