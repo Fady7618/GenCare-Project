@@ -21,7 +21,7 @@
       font-family: 'Montserrat', 'Raleway', 'Roboto Condensed', sans-serif;
     }
     .ai-landing-container {
-      max-width: 420px;
+      max-width: 60%;
       width: 98%;
       margin: auto;
       background: #fff;
@@ -40,7 +40,7 @@
       margin-right: auto;
     }
     .ai-landing-gif {
-      /* width: 70px; */
+      width: 20%;
       margin: 0 10px 10px 10px;
       vertical-align: middle;
     }
@@ -74,14 +74,9 @@
       color: #fff;
       text-decoration: none;
     }
-    .blop {
-      width: 15em;
-      height: 15em;
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      background: url("/img/gif/baby- (3).gif") no-repeat center center;
-      background-size: cover;
-      aspect-ratio: 1/1;
-      margin: 1rem auto;
+    .ai-landing-icon {
+      
+      transform: rotateY(180deg);
     }
     @media (max-width: 576px) {
       .ai-landing-container {
@@ -96,39 +91,47 @@
       .ai-landing-logo {
         width: 90px;
       }
-      /* .ai-landing-gif {
-        width: 45px;
-      } */
-      .blop {
-        width: 12em;
-        height: 12em;
+      .ai-landing-gif, .ai-landing-icon {
+        width: 40px;
       }
-
     }
   </style>
 </head>
 <body>
-  <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
-      <!-- Top GIFs -->
-    <div class="row d-flex justify-content-center  animate__animated animate__fadeInLeft">
-        <div class="col-7 d-flex justify-content-center align-items-center align-self-center">
-            <img src="/img/Bye.gif" alt="Cloud" class="ai-landing-gif object-fit-cover w-100">
-        </div>
+  <div class="ai-landing-container">
+
+    
+    <div class="d-flex justify-content-center align-items-center g-1">
+      <img src="/img/landingAI/sky.png" alt="Cloud" class="ai-landing-gif">
+      <img src="/img/landingAI/baby-unscreen.gif" alt="Mascot" class="ai-landing-gif">
+      <img src="/img/landingAI/sky.png" alt="Cloud" class="ai-landing-gif">
     </div>
-    <div class="ai-landing-title">Experience the Power of GenCare AI</div>
-    <div class="ai-landing-desc d-flex flex-column">
-      <span style="font-weight:600;color:#4f2fa2;">Start Your AI Trip Now!</span><br>
-      Upload your sonogram now and experience the peace of mind that comes with cutting-edge AI technology.<br>
-      <br>
-        <div class="blop align-self-end"></div>
-      <strong style="color:#4f2fa2">Why Trust GenCare AI?</strong><br>
-      <span style="font-size:0.98em;">
-        <b style="color:#4f2fa2">Accuracy:</b> ✓ <span style="font-weight:400;">Trained on thousands of medical records for unmatched precision.</span><br>
-        <b style="color:#4f2fa2">Performance:</b> ✓ <span style="font-weight:400;">Delivers results within seconds to save you time.</span><br>
-        <b style="color:#4f2fa2">Reliability:</b> ✓ <span style="font-weight:400;">Trusted by medical professionals and reviewed for quality assurance.</span><br>
-        <b style="color:#4f2fa2">Fairness:</b> ✓ <span style="font-weight:400;">Our AI is designed to provide unbiased insights for all cases.</span><br>
-        <b style="color:#4f2fa2">Privacy:</b> ✓ <span style="font-weight:400;">We prioritize your data security and never share your information.</span>
-      </span>
+
+    <div class="ai-landing-title mt-3">Experience the Power of GenCare AI</div>
+
+    <div class="row ">
+      <div class="col-8 d-flex flex-column justify-content-center align-items-center">
+        <div style="font-weight:600;color:#4f2fa2; margin-top: 10px;">Start Your AI Trip Now!</div>
+    
+        <div class="ai-landing-desc" style="margin-bottom:0.7rem;">
+          Upload your sonogram now and experience the peace of mind that comes with cutting-edge AI technology.
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="container-fluid d-flex justify-content-end align-items-center ">
+          <img src="/img/landingAI/baby-sleep-unscreen.gif" alt="Trust AI" class="ai-landing-icon w-75">
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="ai-landing-title" style="font-size:1.1rem; margin-top:1.2rem; margin-bottom:0.5rem;">Why Trust GenCare AI?</div>
+    <div class="ai-landing-desc text-start" style="font-size:1em;">
+      <b style="color:#4f2fa2">Accuracy:</b> ✓ <span style="font-weight:400;">Trained on thousands of medical records for unmatched precision.</span><br>
+      <b style="color:#4f2fa2">Performance:</b> ✓ <span style="font-weight:400;">Delivers results within seconds to save you time.</span><br>
+      <b style="color:#4f2fa2">Reliability:</b> ✓ <span style="font-weight:400;">Trusted by medical professionals and reviewed for quality assurance.</span><br>
+      <b style="color:#4f2fa2">Fairness:</b> ✓ <span style="font-weight:400;">Our AI is designed to provide unbiased insights for all cases.</span><br>
+      <b style="color:#4f2fa2">Privacy:</b> ✓ <span style="font-weight:400;">We prioritize your data security and never share your information.</span>
     </div>
     <a href="index.html" class="ai-landing-btn my-2">Start AI Test</a>
   </div>
