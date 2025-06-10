@@ -583,12 +583,12 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
         @include blop(12em, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
         z-index: 1;
     }
-    .blop-17{
-        background: url("../img/Logo/Mob-Logo-removebg-preview.png");
-        @include blop(11rem, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
-        z-index: 1;
-        aspect-ratio: 16/9 !important
-    }
+    // .blop-17{
+    //     background: url("../img/Logo/Mob-Logo-removebg-preview.png");
+    //     @include blop(11rem, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
+    //     z-index: 1;
+    //     aspect-ratio: 16/9 !important
+    // }
     img{
         width: 100%;
         // height: auto;
